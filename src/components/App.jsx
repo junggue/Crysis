@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Home from './Home.jsx';
 
 class App extends Component {
 	constructor(props) {
@@ -6,7 +7,7 @@ class App extends Component {
 	}
 
 	render() {
-		if (false) {
+		if (true) {
 			return (
 				<Home />
 			)
