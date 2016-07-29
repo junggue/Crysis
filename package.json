@@ -1,0 +1,43 @@
+{
+  "name": "crysis",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "5.5.0"
+  },
+  "main": "src/main.js",
+  "scripts": {
+    "start": "nodemon ./server/server.js",
+    "build": "webpack -w",
+    "lint": "eslint --fix"
+  },
+  "precommit": [
+    "lint"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LawnChairDev/Crysis.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LawnChairDev/Crysis/issues"
+  },
+  "homepage": "https://github.com/LawnChairDev/Crysis#readme",
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-eslint": "^6.1.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "eslint": "^2.13.1",
+    "pre-commit": "^1.1.3",
+    "webpack": "^1.13.1"
+  },
+  "dependencies": {
+    "axios": "^0.13.1",
+    "express": "^4.14.0",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1"
+  }
+}
