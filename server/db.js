@@ -41,7 +41,15 @@ var Employee = sequelize.define('Employee', {
   },
   status: Sequelize.BOOLEAN,
   admin: Sequelize.BOOLEAN,
-  password: //authentication goes here
+  //authentication goes here
+  password: {
+    type: Sequelize.VIRTUAL,
+    allowNull: false,
+    validate: {
+      length: [10, 100]
+    },
+    set: 
+  }
   tableName: 'Employees',
   timestamps: true
 })
