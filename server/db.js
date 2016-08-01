@@ -58,10 +58,25 @@ var Organization = sequelize.define('Organization', {
   emergency_status: Sequelize.BOOLEAN,
   password: //auth goes here
   //Do we need emergency id here? How/where do we input foreign keys?
+  tableName: 'Organizations',
+  timestamps: true
 })
 
 var Emergency = sequelize.define('Emergency', {
-  instructions: Sequelize.STRING,
+  instructions: Sequelize.TEXT,
   emergency_type: Sequelize.STRING,
   //map goes here
+  tableName: 'Emergencies',
+  timestamps: true
 })
+
+Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
+Emergency.hasMany(Organization, {foreignKey: 'EmergecnyId'});
+
+sequelize.sync().then(function() {
+  console.log('Tables created');
+})
+
+exports.Employee = Employee;
+exports.Organization = Organization;
+exports.Emergency = Emergency;
