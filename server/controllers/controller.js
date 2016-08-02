@@ -30,10 +30,9 @@ module.exports = {
       dbHelper.insertData(req, res, db.Employee, newUser);
     },
     put: function(req, res){
-
+      
     },
     delete: function(req, res){
-
       
     }
   },
