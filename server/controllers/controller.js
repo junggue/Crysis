@@ -47,7 +47,11 @@ module.exports = {
     }
   },
 
-  'user/setWardenName/:id' : {
+  'user/setWarden' : {
+    
+  },
+
+  'organization': {
     get: function(req, res){
 
     },
