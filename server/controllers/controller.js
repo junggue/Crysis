@@ -46,8 +46,12 @@ module.exports = {
       dbHelper.deleteData(req, res, db.Employee, id);
     }
   },
-  //specific field for one record
-  'user/:id/:field' : {
+
+  'user/setWarden' : {
+    
+  },
+
+  'organization': {
     get: function(req, res){
       var id = req.params.id;
       var field = req.params.field;
