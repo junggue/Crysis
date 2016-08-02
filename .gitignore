@@ -1,3 +1,5 @@
 node_modules/
 
 webClient/compiled/
+
+server/env/config.js
