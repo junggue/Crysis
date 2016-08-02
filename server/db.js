@@ -100,7 +100,7 @@ var Organization = sequelize.define('Organization', {
 var Emergency = sequelize.define('Emergency', {
   instructions: Sequelize.TEXT,
   emergencyType: Sequelize.STRING,
-  //map goes here
+  //map and uploaded files go here
   tableName: 'Emergencies',
   timestamps: true
 })
