@@ -17,15 +17,6 @@ var sequelize = new Sequelize(
 );
 >>>>>>> [SETUP] database keys in env file
 
-// sequelize
-//   .authenticate()
-//   .then(function (err) {
-//     console.log('Connection has been established successfully.');
-//   })
-//   .catch(function (err) {
-//     console.log('Unable to connect to the database:', err);
-//   });
-
 var Employee = sequelize.define('Employee', {
   username: {
     type: Sequelize.STRING,
@@ -117,9 +108,6 @@ var Emergency = sequelize.define('Emergency', {
   tableName: 'Emergencies',
   timestamps: true
 })
-
-// Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
-// Emergency.hasMany(Organization, {foreignKey: 'EmergecnyId'});
 
 Employee.belongsTo(Organization, {foreignKey: 'OrganizationId'})
 Organization.belongsTo(Emergency, {foreignKey: 'EmergencyId'})
