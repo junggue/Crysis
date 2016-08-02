@@ -39,7 +39,8 @@ module.exports = {
 
   'user/:id': {
     get: function(req, res){
-
+      var id = req.params.id;
+      dbHelper.getRecordById(req, res, db.Employee, id);
     },
     post: function(req, res){
 
@@ -51,6 +52,10 @@ module.exports = {
       var id = req.params.id;
       dbHelper.deleteData(req, res, db.Employee, id);
     }
+  },
+
+  'user/setWarden' : {
+    
   },
 
   'organization': {
