@@ -1,17 +1,30 @@
 var Sequelize = require('sequelize');
 var _ = require('lodash');
 var bcrypt = require('bcrypt');
+var config = require('../env/config.js');
 
+<<<<<<< 4bb33103a8be14efe96fcd47cd0afd52d76b7801
 var sequelize = new Sequelize();
+=======
+var sequelize = new Sequelize(
+    config.databaseName,
+    config.userName,
+    config.password, {
+      host: config.host,
+      port: config.port,
+      dialect: config.dialect
+    }
+);
+>>>>>>> [SETUP] database keys in env file
 
-sequelize
-  .authenticate()
-  .then(function (err) {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(function (err) {
-    console.log('Unable to connect to the database:', err);
-  });
+// sequelize
+//   .authenticate()
+//   .then(function (err) {
+//     console.log('Connection has been established successfully.');
+//   })
+//   .catch(function (err) {
+//     console.log('Unable to connect to the database:', err);
+//   });
 
 var Employee = sequelize.define('Employee', {
   username: {
@@ -105,8 +118,11 @@ var Emergency = sequelize.define('Emergency', {
   timestamps: true
 })
 
-Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
-Emergency.hasMany(Organization, {foreignKey: 'EmergecnyId'});
+// Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
+// Emergency.hasMany(Organization, {foreignKey: 'EmergecnyId'});
+
+Employee.belongsTo(Organization, {foreignKey: 'OrganizationId'})
+Organization.belongsTo(Emergency, {foreignKey: 'EmergencyId'})
 
 sequelize.sync().then(function() {
   console.log('Tables created');

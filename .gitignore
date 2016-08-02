@@ -2,4 +2,8 @@ node_modules/
 
 webClient/compiled/
 
+<<<<<<< 4bb33103a8be14efe96fcd47cd0afd52d76b7801
 server/env/config.js
+=======
+env/
+>>>>>>> [SETUP] database keys in env file
