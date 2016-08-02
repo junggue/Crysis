@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Home from './Home.jsx';
+import Login from './Login.jsx';
 
 class App extends Component {
 	constructor(props) {
@@ -20,3 +21,7 @@ class App extends Component {
 }
 
 export default App;
+
+// <Router history={browserHistory}>
+// 	<Route path="/" component={App}/>
+// </Router>
