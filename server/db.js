@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var _ = require('lodash');
+var bcrypt = require('bcrypt');
 
 var sequelize = new Sequelize();
 
@@ -39,8 +40,27 @@ var Employee = sequelize.define('Employee', {
     }
   },
   status: Sequelize.BOOLEAN,
-  admin: Sequelize.BOOLEAN,
-  password: //authentication goes here
+  admin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+  salt: Sequelize.STRING,
+  hash: Sequelize.STRING,
+  //authentication goes here
+  password: {
+    type: Sequelize.VIRTUAL,
+    allowNull: false,
+    validate: {
+      length: [10, 100]
+    },
+    set: function(value) {
+      var salt = bcrypt.genSaltSync(10);
+      var hash = bcrypt.hashSync(value, salt);
+      this.setDataValue('salt', salt);
+      this.setDataValue('hash', hash);
+      this.setDataValue('password', value);
+    }
+  }
   tableName: 'Employees',
   timestamps: true
 })
@@ -55,17 +75,32 @@ var Organization = sequelize.define('Organization', {
     }
   },
   safezone: Sequelize.STRING,
-  emergency_status: Sequelize.BOOLEAN,
-  password: //auth goes here
-  //Do we need emergency id here? How/where do we input foreign keys?
+  emergencyStatus: Sequelize.BOOLEAN,
+  orgSalt: Sequelize.STRING,
+  orgHash: Sequelize.STRING,
+  //Auth for organization
+  password: {
+    type: Sequelize.VIRTUAL,
+    allowNull: false,
+    validate: {
+      length: [10, 100]
+    },
+    set: function(value) {
+      var orgSalt = bcrypt.genSaltSync(10);
+      var orgHash = bcrypt.hashSync(value, orgSalt);
+      this.setDataValue('orgSalt', orgSalt);
+      this.setDataValue('orgHash', orgHash);
+      this.setDataValue('password', value);
+    }
+  },
   tableName: 'Organizations',
   timestamps: true
 })
 
 var Emergency = sequelize.define('Emergency', {
   instructions: Sequelize.TEXT,
-  emergency_type: Sequelize.STRING,
-  //map goes here
+  emergencyType: Sequelize.STRING,
+  //map and uploaded files go here
   tableName: 'Emergencies',
   timestamps: true
 })
