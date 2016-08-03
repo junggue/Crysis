@@ -48,6 +48,18 @@ var db = require('../db.js');
       });
   };
 
+  // get a attribute of a record
+  exports.getColumnById = function(req, res, table, id, col){
+    table.findOne({where:{id:id},
+      attributes: col})
+      .then(function(data){
+        res.status(200).send(data);
+      })
+      .catch(function(err){
+        res.status(500).send(err.message);
+      })
+  };
+
   //check if the id exist in a table
   exports.isIdExist = function(table, id){
     return table.count({where: {id: id}})

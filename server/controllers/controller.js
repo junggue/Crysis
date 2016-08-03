@@ -29,7 +29,7 @@ module.exports = {
       
     }
   },
-
+  //entire record
   'user/:id': {
     get: function(req, res){
       var id = req.params.id;
@@ -46,16 +46,25 @@ module.exports = {
       dbHelper.deleteData(req, res, db.Employee, id);
     }
   },
-
-  'user/setWardenName/:id' : {
+  //specific field for one record
+  'user/:id/:field' : {
     get: function(req, res){
+      var id = req.params.id;
+      var field = req.params.field;
+      //get a record
+      if(!req.params.field){
+        dbHelper.getRecordById(req, res, db.Employee, id);
+      }
+      //get a attribute of a record
+      dbHelper.getColumnById(req, res, db.Employee, id, field);
 
     },
     post: function(req, res){
-
+      
     },
     put: function(req, res){
       var id = req.params.id;
+      var field = req.params.field;
 
       var newData = req.body.wardenName;
 
@@ -163,6 +172,4 @@ module.exports = {
       
     }
   }
-
-
 }
