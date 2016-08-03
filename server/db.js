@@ -1,17 +1,27 @@
 var Sequelize = require('sequelize');
 var _ = require('lodash');
 var bcrypt = require('bcrypt');
+var config = require('../env/config.js');
 
-var sequelize = new Sequelize();
 
-sequelize
-  .authenticate()
-  .then(function (err) {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(function (err) {
-    console.log('Unable to connect to the database:', err);
-  });
+var sequelize = new Sequelize(
+    config.databaseName,
+    config.userName,
+    config.password, {
+      host: config.host,
+      port: config.port,
+      dialect: config.dialect
+    }
+);
+
+// sequelize
+//   .authenticate()
+//   .then(function (err) {
+//     console.log('Connection has been established successfully.');
+//   })
+//   .catch(function (err) {
+//     console.log('Unable to connect to the database:', err);
+//   });
 
 var Employee = sequelize.define('Employee', {
   username: {
@@ -31,8 +41,11 @@ var Employee = sequelize.define('Employee', {
     }
   },
   name: Sequelize.STRING,
-  role: Sequelize.STRING,
-  warden: {
+  isWarden: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
+  wardenName: {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
@@ -40,7 +53,7 @@ var Employee = sequelize.define('Employee', {
     }
   },
   status: Sequelize.BOOLEAN,
-  admin: {
+  isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
   },
@@ -61,9 +74,11 @@ var Employee = sequelize.define('Employee', {
       this.setDataValue('password', value);
     }
   }
+},
+{
   tableName: 'Employees',
   timestamps: true
-})
+});
 
 var Organization = sequelize.define('Organization', {
   username: {
@@ -92,21 +107,28 @@ var Organization = sequelize.define('Organization', {
       this.setDataValue('orgHash', orgHash);
       this.setDataValue('password', value);
     }
-  },
+  }
+},
+{
   tableName: 'Organizations',
   timestamps: true
-})
+});
 
 var Emergency = sequelize.define('Emergency', {
   instructions: Sequelize.TEXT,
   emergencyType: Sequelize.STRING,
   //map and uploaded files go here
+},
+{
   tableName: 'Emergencies',
   timestamps: true
-})
+});
 
-Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
-Emergency.hasMany(Organization, {foreignKey: 'EmergecnyId'});
+// Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
+// Emergency.hasMany(Organization, {foreignKey: 'EmergecnyId'});
+
+Employee.belongsTo(Organization, {foreignKey: 'OrganizationId'})
+Organization.belongsTo(Emergency, {foreignKey: 'EmergencyId'})
 
 sequelize.sync().then(function() {
   console.log('Tables created');
