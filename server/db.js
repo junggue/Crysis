@@ -58,7 +58,7 @@ var Employee = sequelize.define('Employee', {
     type: Sequelize.VIRTUAL,
     allowNull: false,
     validate: {
-      length: [10, 100]
+      len: [10, 100]
     },
     set: function(value) {
       var salt = bcrypt.genSaltSync(10);
@@ -70,7 +70,7 @@ var Employee = sequelize.define('Employee', {
   }
 },
 {
-  tableName: 'Employees',
+  tableName: 'Employee',
   timestamps: false
 });
 
@@ -92,7 +92,7 @@ var Organization = sequelize.define('Organization', {
     type: Sequelize.VIRTUAL,
     allowNull: false,
     validate: {
-      length: [10, 100]
+      len: [10, 100]
     },
     set: function(value) {
       var orgSalt = bcrypt.genSaltSync(10);
@@ -104,7 +104,7 @@ var Organization = sequelize.define('Organization', {
   }
 },
 {
-  tableName: 'Organizations',
+  tableName: 'Organization',
   timestamps: false
 });
 
@@ -114,12 +114,12 @@ var Emergency = sequelize.define('Emergency', {
   //map and uploaded files go here
 },
 {
-  tableName: 'Emergencies',
+  tableName: 'Emergency',
   timestamps: false
 });
 
-// Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
-// Emergency.hasMany(Organization, {foreignKey: 'EmergecnyId'});
+Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
+Emergency.hasMany(Organization, {foreignKey: 'EmergecnyId'});
 
 Employee.belongsTo(Organization, {foreignKey: 'OrganizationId'})
 Organization.belongsTo(Emergency, {foreignKey: 'EmergencyId'})
