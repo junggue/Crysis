@@ -71,7 +71,7 @@ var Employee = sequelize.define('Employee', {
 },
 {
   tableName: 'Employees',
-  timestamps: true
+  timestamps: false
 });
 
 var Organization = sequelize.define('Organization', {
@@ -105,7 +105,7 @@ var Organization = sequelize.define('Organization', {
 },
 {
   tableName: 'Organizations',
-  timestamps: true
+  timestamps: false
 });
 
 var Emergency = sequelize.define('Emergency', {
@@ -115,7 +115,7 @@ var Emergency = sequelize.define('Emergency', {
 },
 {
   tableName: 'Emergencies',
-  timestamps: true
+  timestamps: false
 });
 
 // Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
