@@ -47,28 +47,15 @@ module.exports = {
     }
   },
 
-  'user/setWarden' : {
-    
-  },
-
-  'organization': {
+  'user/setWardenName/:id' : {
     get: function(req, res){
-      var id = req.params.id;
-      var field = req.params.field;
-      //get a record
-      if(!req.params.field){
-        dbHelper.getRecordById(req, res, db.Employee, id);
-      }
-      //get a attribute of a record
-      dbHelper.getColumnById(req, res, db.Employee, id, field);
 
     },
     post: function(req, res){
-      
+
     },
     put: function(req, res){
       var id = req.params.id;
-      var field = req.params.field;
 
       var newData = req.body.wardenName;
 
@@ -121,16 +108,6 @@ module.exports = {
   },
 
   'organization': {
-    get: function(req, res){
-      var id = req.params.id;
-      dbHelper.getRecordById(req, res, db.Organization, id);
-    },
-    delete: function(req, res){
-      
-    }
-  },
-
-  'organization/:id': {
     get: function(req, res){
       var id = req.params.id;
       dbHelper.getRecordById(req, res, db.Organization, id);
