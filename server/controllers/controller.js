@@ -47,24 +47,46 @@ module.exports = {
     }
   },
 
-  'user/setWarden' : {
-    
+  'user/setWardenName/:id' : {
+    get: function(req, res){
+
+    },
+    post: function(req, res){
+
+    },
+    put: function(req, res){
+      var id = req.params.id;
+
+      var newData = req.body.wardenName;
+
+      db.Employee.find({where:{id:id}})
+        .then(function(record){
+          record.updateAttributes({wardenName:newData});
+          res.status(200).send("warden successfully updated");
+      })
+      .catch(function(err){
+        res.status(500).send(err.message);
+      });
+    },
+    delete: function(req, res){
+      
+    }
   },
 
   'organization': {
     get: function(req, res){
-      var id = req.params.id;
-      var field = req.params.field;
-      //get a record
-      if(!req.params.field){
-        dbHelper.getRecordById(req, res, db.Employee, id);
-      }
-      //get a attribute of a record
-      dbHelper.getColumnById(req, res, db.Employee, id, field);
-
+      dbHelper.getAll(req, res, db.Organization);
     },
     post: function(req, res){
-      
+      var newOrg = {
+          username       : req.body.username,
+          safezone       : req.body.email,
+          emergencyStatus: req.body.name,
+          orgSalt        : req.body.role,
+          orgHash        : req.body.warden,
+          password       : req.body.status
+        }
+      dbHelper.insertData(req, res, db.Organization, newOrg);
     },
     put: function(req, res){
       var id = req.params.id;
