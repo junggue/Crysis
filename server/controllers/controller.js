@@ -47,11 +47,7 @@ module.exports = {
     }
   },
 
-  'user/setWarden' : {
-    
-  },
-
-  'organization': {
+  'user/setWardenName/:id' : {
     get: function(req, res){
 
     },
@@ -93,7 +89,28 @@ module.exports = {
       dbHelper.insertData(req, res, db.Organization, newOrg);
     },
     put: function(req, res){
+      var id = req.params.id;
 
+      var newData = req.body.wardenName;
+
+      db.Employee.find({where:{id:id}})
+        .then(function(record){
+          record.updateAttributes({wardenName:newData});
+          res.status(200).send("warden successfully updated");
+      })
+      .catch(function(err){
+        res.status(500).send(err.message);
+      });
+    },
+    delete: function(req, res){
+      
+    }
+  },
+
+  'organization': {
+    get: function(req, res){
+      var id = req.params.id;
+      dbHelper.getRecordById(req, res, db.Organization, id);
     },
     delete: function(req, res){
       
