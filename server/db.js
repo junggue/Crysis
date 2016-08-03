@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var _ = require('lodash');
 var bcrypt = require('bcrypt');
-var config = require('../env/config.js');
+var config = require('./env/config.js');
 
 
 var sequelize = new Sequelize(
@@ -44,14 +44,8 @@ var Employee = sequelize.define('Employee', {
   isWarden: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
-  }
-  wardenName: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    }
   },
+  wardenName: Sequelize.STRING,
   status: Sequelize.BOOLEAN,
   isAdmin: {
     type: Sequelize.BOOLEAN,
