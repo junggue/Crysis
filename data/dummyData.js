@@ -1,40 +1,47 @@
-module.exports = {
-	org: {
-		org_name: 'Cerebro',
-		password: 'klsd34jksd',
-		safezone: 'the zone',
-		emergency_status: 'false'
-	},
-	employees: [
+var db = require('../server/db.js');
+
+exports.dummyData = function () {
+
+	db.Organization.create({
+		username: 'Toiletz',
+		password: '123dog',
+		safezone: 'Courtyard',
+		emergencyStatus: false
+	});
+
+	db.Employee.bulkCreate([
 		{
-			username: "mBardico",
-			password: "alkjsdf39",
-			name: "Melinda Bardico",
-			organization_id: "24",
-			type: "warden",
-			warden_username: "null",
-			status: "default",
-			admin: true
+			username: 'woodmerik',
+			email: 'woodmerik@aol.com',
+			password: 'password1',
+			name: 'Merik Wood',
+			isWarden: true,
+			wardenName: null,
+			status: true,
+			isAdmin: true,
+			OrganizationId: 1
 		},
 		{
-			username: "PhilSleven",
-			password: "alsdgsghhadf39",
-			name: "Phil Seidel",
-			organization_id: "24",
-			type: "regular",
-			warden_username: "mBardico",
-			status: "default",
-			admin: false
+			username: 'terramatt',
+			email: 'mattterra@aol.com',
+			password: 'password123',
+			name: 'Matt Terra',
+			isWarden: false,
+			wardenName: 'woodmerik',
+			status: true,
+			isAdmin: false,
+			OrganizationId: 1
 		},
 		{
-			username: "MikeyT",
-			password: "209jks932",
-			name: "Dirty Mike",
-			organization_id: "24",
-			type: "regular",
-			warden_username: "mBardico",
-			status: "default",
-			admin: false
-		}
-	]
-} 
+			username: 'yangjung',
+			email: 'yangjung@aol.com',
+			password: '1234pass',
+			name: 'Jung Yang',
+			isWarden: false,
+			wardenName: 'woodmerik',
+			status: true,
+			isAdmin: false,
+			OrganizationId: 1
+		},
+	])
+}
