@@ -74,9 +74,11 @@ var Employee = sequelize.define('Employee', {
       this.setDataValue('password', value);
     }
   }
+},
+{
   tableName: 'Employees',
   timestamps: true
-})
+});
 
 var Organization = sequelize.define('Organization', {
   username: {
@@ -105,18 +107,22 @@ var Organization = sequelize.define('Organization', {
       this.setDataValue('orgHash', orgHash);
       this.setDataValue('password', value);
     }
-  },
+  }
+},
+{
   tableName: 'Organizations',
   timestamps: true
-})
+});
 
 var Emergency = sequelize.define('Emergency', {
   instructions: Sequelize.TEXT,
   emergencyType: Sequelize.STRING,
   //map and uploaded files go here
+},
+{
   tableName: 'Emergencies',
   timestamps: true
-})
+});
 
 // Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
 // Emergency.hasMany(Organization, {foreignKey: 'EmergecnyId'});
