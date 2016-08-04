@@ -1,10 +1,10 @@
 var db = require('../server/db.js');
 
-exports.dummyData = function () {
+module.exports = (function () {
 
 	db.Organization.create({
 		username: 'Toiletz',
-		password: '123dog',
+		password: 'password123',
 		safezone: 'Courtyard',
 		emergencyStatus: false
 	});
@@ -13,7 +13,7 @@ exports.dummyData = function () {
 		{
 			username: 'woodmerik',
 			email: 'woodmerik@aol.com',
-			password: 'password1',
+			password: 'password123',
 			name: 'Merik Wood',
 			isWarden: true,
 			wardenName: null,
@@ -35,13 +35,14 @@ exports.dummyData = function () {
 		{
 			username: 'yangjung',
 			email: 'yangjung@aol.com',
-			password: '1234pass',
+			password: 'password123',
 			name: 'Jung Yang',
 			isWarden: false,
 			wardenName: 'woodmerik',
 			status: true,
 			isAdmin: false,
 			OrganizationId: 1
-		},
+		}
 	])
-}
+
+})();
