@@ -7,5 +7,4 @@ var postgres = {
 	dialect: 'postgres'
 };
 
-
 module.exports = postgres;
