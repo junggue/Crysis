@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 var _ = require('lodash');
 var bcrypt = require('bcrypt');
 var config = require('./env/config.js');
-
+var jwt = require('jsonwebtoken');
 
 var sequelize = new Sequelize(
     config.databaseName,
