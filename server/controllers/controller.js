@@ -95,12 +95,12 @@ module.exports = {
 		},
 		post: function(req, res) {
 			var newData = {
-					instructions	: req.body.instructions,
-					emergencyType	: req.body.emergencyType,
-					emergencyStatus: req.body.name,
-					orgSalt			: req.body.role,
-					orgHash			: req.body.warden,
-					password			: req.body.status
+					instructions		: req.body.instructions,
+					emergencyType		: req.body.emergencyType,
+					emergencyStatus	: req.body.name,
+					orgSalt					: req.body.role,
+					orgHash					: req.body.warden,
+					password				: req.body.status
 				}
 				dbHelper.insertData(req, res, db.Emergency, newData);
 		},

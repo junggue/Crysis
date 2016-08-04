@@ -58,17 +58,6 @@ exports.getElement = function(req, res, table, id, col){
 		});
 };
 
-//check if the id exist in a table
-exports.isIdExist = function(table, id){
-	return table.count({where: {id: id}})
-		.then(function(count) {
-			if (count != 0) {
-			 return true;
-			}
-			return false;
-		});
-};
-
 //PUT
 exports.updateData = function(req, res, table, id, newColumnData){
 	table.update(newColumnData, {where:{id:id}})
@@ -89,5 +78,16 @@ exports.deleteData = function(req, res, table, id){
 		})
 		.catch(function(err){
 			 res.status(500).send(err.message);
+		});
+};
+
+//check if the id exist in a table
+exports.isIdExist = function(table, id){
+	return table.count({where: {id: id}})
+		.then(function(count) {
+			if (count != 0) {
+			 return true;
+			}
+			return false;
 		});
 };
