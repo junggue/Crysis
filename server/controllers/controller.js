@@ -114,7 +114,7 @@ module.exports = {
 			}
 		},
 		delete: function(req, res) {
-			dbHelper.deleteData(req, res, db.Organization, req.query.id);
+			dbHelper.deleteData(req, res, db.Emergency, req.query.id);
 		}
 	}
 }
