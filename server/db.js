@@ -71,7 +71,10 @@ var Employee = sequelize.define('Employee', {
 },
 {
   tableName: 'Employee',
-  timestamps: false
+  timestamps: false,
+  instanceMethods: {
+    generateToken:
+  }
 });
 
 var Organization = sequelize.define('Organization', {
