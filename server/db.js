@@ -5,13 +5,13 @@ var config = require('./env/config.js');
 
 
 var sequelize = new Sequelize(
-    config.databaseName,
-    config.userName,
-    config.password, {
-      host: config.host,
-      port: config.port,
-      dialect: config.dialect
-    }
+		config.databaseName,
+		config.userName,
+		config.password, {
+			host: config.host,
+			port: config.port,
+			dialect: config.dialect
+		}
 );
 
 // sequelize
@@ -24,6 +24,7 @@ var sequelize = new Sequelize(
 //   });
 
 var Employee = sequelize.define('Employee', {
+<<<<<<< 50753f69b0c1a15e6c219507a0cff55b28f1985f
   username: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -106,16 +107,105 @@ var Organization = sequelize.define('Organization', {
 {
   tableName: 'Organization',
   timestamps: false
+=======
+	username: {
+		type: Sequelize.STRING,
+		allowNull: false,
+		unique: true,
+		validate: {
+			notEmpty: true
+		}
+	},
+	email: {
+		type: Sequelize.STRING,
+		allowNull: false,
+		validate: {
+			isEmail: true,
+			notEmpty: true
+		}
+	},
+	name: Sequelize.STRING,
+	isWarden: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false
+	},
+	wardenName: Sequelize.STRING,
+	status: Sequelize.BOOLEAN,
+	isAdmin: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false
+	},
+	salt: Sequelize.STRING,
+	hash: Sequelize.STRING,
+	//authentication goes here
+	password: {
+		type: Sequelize.VIRTUAL,
+		allowNull: false,
+		validate: {
+			len: [10, 100]
+		},
+		set: function(value) {
+			var salt = bcrypt.genSaltSync(10);
+			var hash = bcrypt.hashSync(value, salt);
+			this.setDataValue('salt', salt);
+			this.setDataValue('hash', hash);
+			this.setDataValue('password', value);
+		}
+	}
+},
+{
+	tableName: 'Employee',
+	timestamps: false
+});
+
+var Organization = sequelize.define('Organization', {
+	username: {
+		type: Sequelize.STRING,
+		allowNull: false,
+		unique: true,
+		validate: {
+			notEmpty: true
+		}
+	},
+	safezone: Sequelize.STRING,
+	emergencyStatus: Sequelize.BOOLEAN,
+	orgSalt: Sequelize.STRING,
+	orgHash: Sequelize.STRING,
+	//Auth for organization
+	password: {
+		type: Sequelize.VIRTUAL,
+		allowNull: false,
+		validate: {
+			len: [10, 100]
+		},
+		set: function(value) {
+			var orgSalt = bcrypt.genSaltSync(10);
+			var orgHash = bcrypt.hashSync(value, orgSalt);
+			this.setDataValue('orgSalt', orgSalt);
+			this.setDataValue('orgHash', orgHash);
+			this.setDataValue('password', value);
+		}
+	}
+},
+{
+	tableName: 'Organization',
+	timestamps: false
+>>>>>>> [FEATURE] implement fully functional controller, dbHelper
 });
 
 var Emergency = sequelize.define('Emergency', {
-  instructions: Sequelize.TEXT,
-  emergencyType: Sequelize.STRING,
-  //map and uploaded files go here
+	instructions: Sequelize.TEXT,
+	emergencyType: Sequelize.STRING,
+	//map and uploaded files go here
 },
 {
+<<<<<<< 50753f69b0c1a15e6c219507a0cff55b28f1985f
   tableName: 'Emergency',
   timestamps: false
+=======
+	tableName: 'Emergency',
+	timestamps: false
+>>>>>>> [FEATURE] implement fully functional controller, dbHelper
 });
 
 Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
@@ -125,7 +215,7 @@ Employee.belongsTo(Organization, {foreignKey: 'OrganizationId'})
 Organization.belongsTo(Emergency, {foreignKey: 'EmergencyId'})
 
 sequelize.sync().then(function() {
-  console.log('Tables created');
+	console.log('Tables created');
 })
 
 exports.Employee = Employee;

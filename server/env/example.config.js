@@ -1,9 +1,9 @@
 var postgres = {
-    databaseName: 'ENTER DATABASE NAME',    // datehub
-    userName: 'ENTER USERNAME',             // coolguy
-    password: 'ENTER PASSWORD',             // coolguypassword
-    host: 'ENTER HOSTNAME',                 // ex: localhost
-    port: 5432,                             // ex: 1234
+    databaseName: 'ENTER DATABASE NAME',
+    userName: 'ENTER USERNAME',
+    password: 'ENTER PASSWORD',
+    host: 'ENTER HOSTNAME',
+    port: 5432,
     dialect: 'postgres'
   };
 
