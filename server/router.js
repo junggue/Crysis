@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var controller = require('./controllers/controller.js');
+var controller = require('./controllers/indexAPI.js');
 
 for(var route in controller) {
 	router.route('/' + route)
