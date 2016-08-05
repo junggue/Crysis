@@ -1,7 +1,7 @@
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './src/main.jsx'
+    './webClient/src/main.jsx'
   ],
   output: {
     path: __dirname + '/webClient/compiled',
