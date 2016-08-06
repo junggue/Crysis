@@ -16,13 +16,13 @@ module.exports = {
 		},
 		post: function(req, res){
 			var newOrg = {
-				username			: req.body.username,
-				safezone			: req.body.email,
-				emergencyStatus: req.body.name,
-				orgSalt			: req.body.role,
-				orgHash			: req.body.warden,
-				password			: req.body.status,
-				EmergencyId		: req.body.EmergencyId
+				username				: req.body.username,
+				safezone				: req.body.safezone,
+				emergencyStatus	: req.body.emergencyStatus,
+				orgSalt					: req.body.orgSalt,
+				orgHash					: req.body.orgHash,
+				password				: req.body.password,
+				EmergencyId			: req.body.EmergencyId
 			}
 			dbHelper.insertData(req, res, db.Organization, newOrg);
 		},

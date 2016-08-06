@@ -13,6 +13,7 @@ exports.insertData = function(req, res, table, newData){
 };
 
 //GET
+//filter more
 exports.getAll = function(req, res, table, column, value) {
 	if(!column && !value) {
 		table.findAll()
