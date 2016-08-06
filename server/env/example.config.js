@@ -1,4 +1,4 @@
-var postgres = {
+module.exports.postgres = {
 	databaseName: 'ENTER DATABASE NAME',
 	userName: 'ENTER USERNAME',
 	password: 'ENTER PASSWORD',
@@ -7,4 +7,6 @@ var postgres = {
 	dialect: 'postgres'
 };
 
-module.exports = postgres;
+module.exports.key = {
+	SECRET: 'RANDOM_STRING';
+}
