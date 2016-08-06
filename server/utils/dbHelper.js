@@ -1,4 +1,4 @@
-var db = require('../db.js');
+var db = require('../db/db.js');
 var bcrypt = require('bcrypt');
 
 //POST

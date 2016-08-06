@@ -1,4 +1,4 @@
-var db = require('../db.js');
+var db = require('..db//db.js');
 var dbHelper = require('../utils/dbHelper.js');
 var jwt = require('jsonwebtoken');
 var secret = require('../env/config.js');
@@ -17,7 +17,10 @@ module.exports = {
               .then(function(match) {
                 if(match) {
                   var token = jwt.sign(employee, secret.SECRET, {
-                    expiresIn: 1440 * 90
+                    expiresIn: 1440 * 90,
+                    username: username,
+                    organizationId: organizationId,
+                    wardenName: wardenName
                   });
                   res.send({
                     token: token,
