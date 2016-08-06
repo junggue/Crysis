@@ -10,3 +10,6 @@ for(var route in controller) {
 }
 
 module.exports = router;
+
+// example for authentication
+// router.post('/', helpers.tokenCheck, controllers['/'].post);
