@@ -5,7 +5,13 @@ module.exports = {
 	'user': {
 		get: function(req, res){
 			if(req.query.id && req.query.column){
-				dbHelper.getElement(req, res, db.Employee, req.query.id, req.query.column);
+				dbHelper.getElement(req, res, db.Employee, req.query.id, req.query.column)
+					.then(function(data){
+						res.status(200).send(data);
+					})
+					.catch(function(err){
+						res.status(500).send(err.message);
+					});
 			} else if(req.query.id && !req.query.column){
 				dbHelper.getRecord(req, res, db.Employee, req.query.id);
 			} else if(!req.query.id && req.query.column && req.query.value){
