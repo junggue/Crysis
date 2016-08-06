@@ -1,4 +1,5 @@
 var db = require('../db.js');
+var bcrypt = require('bcrypt');
 
 //POST
 exports.insertData = function(req, res, table, newData){
@@ -91,3 +92,23 @@ exports.isIdExist = function(table, id){
 			return false;
 		});
 };
+
+//find user by username
+exports.findByUsername = function(username) {
+  table.findOne({where: {username: username}})
+    .then(function(rows) {
+      return rows[0];
+    });
+};
+
+//Verify password matches on login
+exports.verifyPassword = function(password, enteredPw) {
+	return new Promise(function(resolve, reject) {
+    bcrypt.compare(enteredPw, password, function(err, res) {
+      if (err) {
+				return reject(err);
+			}
+      resolve(res);
+    });
+  });
+}

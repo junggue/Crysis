@@ -1,5 +1,6 @@
 var db = require('../db.js');
 var dbHelper = require('../utils/dbHelper.js');
+var jwt = require('jsonwebtoken');
 
 module.exports = {
 	'user': {
