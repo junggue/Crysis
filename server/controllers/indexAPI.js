@@ -1,4 +1,4 @@
-var db = require('../db.js');
+var db = require('../db/db.js');
 var dbHelper = require('../utils/dbHelper.js');
 var userController = require('./user.controller.js');
 var organizationController = require('./organization.controller.js');

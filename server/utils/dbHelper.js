@@ -1,4 +1,4 @@
-var db = require('../db.js');
+var db = require('../db/db.js');
 var bcrypt = require('bcrypt');
 
 //POST
@@ -51,13 +51,7 @@ exports.getRecord = function(req, res, table, id){
 
 //GET
 exports.getElement = function(req, res, table, id, col){
-	table.findOne({where: {id:id}, attributes:[col]})
-		.then(function(data){
-			res.status(200).send(data);
-		})
-		.catch(function(err){
-			res.status(500).send(err.message);
-		});
+	return table.findOne({where: {id:id}, attributes:[col]});
 };
 
 //PUT
