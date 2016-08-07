@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var router = require('./router/router.js');
-// var dummyData = require('../data/dummyData.js')
+// var dummyData = require('./db/dummyData.js')
 
 app.use(bodyParser.json());
 
