@@ -1,4 +1,4 @@
-var db = require('..db//db.js');
+var db = require('../db/db.js');
 var dbHelper = require('../utils/dbHelper.js');
 var jwt = require('jsonwebtoken');
 var secret = require('../env/config.js');
