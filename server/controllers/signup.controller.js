@@ -45,10 +45,10 @@ module.exports = {
         });
     },
     put: function(req, res) {
-      res.edn('Received PUT signup');
+      res.end('Received PUT signup');
     },
     delete: function(req, res) {
-      res.edn('Received DELETE signup');
+      res.end('Received DELETE signup');
     }
   }
 }
