@@ -1,7 +1,7 @@
 var db = require('../db/db.js');
 var dbHelper = require('../utils/dbHelper.js');
 var jwt = require('jsonwebtoken');
-var secret = require('../env/config.js');
+var secret = require('../env/config.js')['key'];
 
 module.exports = {
   'signup': {
@@ -18,20 +18,19 @@ module.exports = {
         isAdmin: req.body.isAdmin,
         password: req.body.password
       };
-      dbHelper.findByUsername(newEmployee.username)
+      dbHelper.getAll(db.Employee, username, newEmployee.username)
         .then(function(employee) {
           if(employee) {
             res.status(401).json({
               message: 'Username already exists'
             });
           } else {
-            dbHelper.insertData(req, res, table, newEmployee)
+            dbHelper.insertData(req, res, db.Employee, newEmployee)
               .then(function(employee) {
                 var token = jwt.sign(employee, secret.SECRET), {
-                  expiresIn: 1440 * 90,
-                  username: username,
-                  organizationId: organizationId,
-                  wardenName: wardenName
+                  'username': db.Employee.username,
+                  'organizationId': db.Employee.organizationId,
+                  'wardenName': db.Employee.wardenName
                 };
                 res.json({
                   token: token,
@@ -46,10 +45,10 @@ module.exports = {
         });
     },
     put: function(req, res) {
-      res.edn('Received PUT signup');
+      res.end('Received PUT signup');
     },
     delete: function(req, res) {
-      res.edn('Received DELETE signup');
+      res.end('Received DELETE signup');
     }
   }
 }

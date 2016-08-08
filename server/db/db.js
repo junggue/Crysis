@@ -3,8 +3,6 @@ var _ = require('lodash');
 var bcrypt = require('bcrypt');
 var config = require('../env/config.js')['postgres'];
 
-console.log(config);
-
 var sequelize = new Sequelize(
     config.databaseName,
     config.userName,
@@ -47,7 +45,10 @@ var Employee = sequelize.define('Employee', {
     defaultValue: false
   },
   wardenName: Sequelize.STRING,
-  status: Sequelize.BOOLEAN,
+  status: {
+    type: Sequelize.STRING,
+    defaultValue: null
+  },
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
@@ -68,7 +69,8 @@ var Employee = sequelize.define('Employee', {
       this.setDataValue('hash', hash);
       this.setDataValue('password', value);
     }
-  }
+  },
+  deviceToken: Sequelize.STRING
 },
 {
   tableName: 'Employee',

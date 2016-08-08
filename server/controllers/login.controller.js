@@ -1,7 +1,8 @@
 var db = require('../db/db.js');
 var dbHelper = require('../utils/dbHelper.js');
+var fnHelper = require('../utils/fnHelper.js');
 var jwt = require('jsonwebtoken');
-var secret = require('../env/config.js');
+var secret = require('../env/config.js')['key'];
 
 module.exports = {
   '/login': {
@@ -10,17 +11,16 @@ module.exports = {
     },
     post: fuction(req, res) {
       var username = req.body.username;
-      dbHelper.findByUsername(username)
+      dbHelper.getAll(db.Employee, username, newEmployee.username)
         .then(function(user) {
           if(employee) {
-            dbHelper.verifyPassword(employee.password, password)
+            fnHelper.verifyPassword(employee.password, password)
               .then(function(match) {
                 if(match) {
                   var token = jwt.sign(employee, secret.SECRET, {
-                    expiresIn: 1440 * 90,
-                    username: username,
-                    organizationId: organizationId,
-                    wardenName: wardenName
+                    'username': db.Employee.username,
+                    'organizationId': db.Employee.organizationId,
+                    'wardenName': db.Employee.wardenName
                   });
                   res.send({
                     token: token,
