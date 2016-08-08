@@ -1,23 +1,19 @@
 var jwt = require('jsonwebtoken');
+var secret = require('../env/config.js')['key'];
 
 module.exports.tokenCheck = function(req, res, next){
-	var token = req.body.token;
+
+	var token = req.headers['x-access-token'];
 
 	if (token) {
-
-		//process.env.secret : secret key
-		//public string can be used(?)
-		jwt.verify(token, process.env.secret, function(err, decoded){
+		jwt.verify(token, secret, function(err, decoded){
 			if (err) {
 				return res.send(err.message);
 			} else {
-				//add a new property for decoded token.
-				req.decodedToken = decoded;
 				next()
 			}
 		});
-
 	} else {
-		return res.status(403).send("");
+		return res.status(403).send("403 Error: Token does not exist");
 	}
 };
