@@ -8,5 +8,5 @@ module.exports.postgres = {
 };
 
 module.exports.key = {
-	SECRET: 'RANDOM_STRING';
+	SECRET: 'RANDOM_STRING'
 }
