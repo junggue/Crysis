@@ -1,115 +1,41 @@
 var db = require('../db/db.js');
-var bcrypt = require('bcrypt');
 
-//POST
-exports.insertData = function(req, res, table, newData){
-	table.create(newData)
-		.then(function(data){
-			res.status(200).send(data);
-		})
-		.catch(function(err){
-			res.status(500).send(err.message);
-		});
+exports.insertData = function(table, newData){
+		return table.create(newData);
 };
 
-//GET
-//filter more
-exports.getAll = function(req, res, table, column, value) {
+exports.getAll = function(table, column, value) {
 	if(!column && !value) {
-		table.findAll()
-			.then(function(data){
-				res.status(200).send(data);
-			})
-			.catch(function(err){
-				res.status(500).send(err.message);
-			});
-	} else if(column && value) {
-		var columnValObj = {}
-		columnValObj[column] = value;
-		table.findAll({where:columnValObj})
-			.then(function(data){
-				res.status(200).send(data);
-			})
-			.catch(function(err){
-				res.status(500).send(err.message);
-			});
+		return (table.findAll());
 	} else {
-		res.status(500).send(err.message);
+		var columnValObj = {};
+		columnValObj[column] = value;
+		return (table.findAll({where:columnValObj}));
 	}
 }
 
-//GET
-exports.getRecord = function(req, res, table, id){
-	table.findById(id)
-		.then(function(data){
-		  res.status(200).send(data);
-		})
-		.catch(function(err){
-		  res.status(500).send(err.message);
-		});
+exports.getRecord = function(table, id){
+	return (table.findById(id));
 };
 
-//GET
-exports.getElement = function(req, res, table, id, col){
-	table.findOne({where: {id:id}, attributes:[col]})
-		.then(function(data){
-			res.status(200).send(data);
-		})
-		.catch(function(err){
-			res.status(500).send(err.message);
-		});
+exports.getElement = function(table, id, col){
+	return (table.findOne({where: {id:id}, attributes:[col]}));
 };
 
-//PUT
-exports.updateData = function(req, res, table, id, newColumnData){
-	table.update(newColumnData, {where:{id:id}})
-		.then(function(data){
-			res.status(200).send("successfully updated");
-		})
-		.catch(function(err){
-			res.status(500).send(err.message);
-		});
+exports.updateData = function(table, id, newColumnData){
+	return table.update(newColumnData, {where:{id:id}});
 };
 
-//DELETE
-exports.deleteData = function(req, res, table, id){
-	table.findById(id)
-		.then(function(id){
-			id.destroy();
-			res.status(200).send("the id " + id + " is successfully delete.")
-		})
-		.catch(function(err){
-			 res.status(500).send(err.message);
-		});
+exports.deleteData = function(table, id){
+	return (table.findById(id));
 };
 
-//check if the id exist in a table
 exports.isIdExist = function(table, id){
 	return table.count({where: {id: id}})
 		.then(function(count) {
 			if (count != 0) {
-			 return true;
+				return true;
 			}
 			return false;
 		});
 };
-
-//find user by username
-exports.findByUsername = function(username) {
-  table.findOne({where: {username: username}})
-    .then(function(rows) {
-      return rows[0];
-    });
-};
-
-//Verify password matches on login
-exports.verifyPassword = function(password, enteredPw) {
-	return new Promise(function(resolve, reject) {
-    bcrypt.compare(enteredPw, password, function(err, res) {
-      if (err) {
-				return reject(err);
-			}
-      resolve(res);
-    });
-  });
-}
