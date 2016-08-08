@@ -45,7 +45,10 @@ var Employee = sequelize.define('Employee', {
     defaultValue: false
   },
   wardenName: Sequelize.STRING,
-  status: Sequelize.BOOLEAN,
+  status: {
+    type: Sequelize.STRING,
+    defaultValue: null
+  },
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
@@ -66,7 +69,8 @@ var Employee = sequelize.define('Employee', {
       this.setDataValue('hash', hash);
       this.setDataValue('password', value);
     }
-  }
+  },
+  deviceToken: Sequelize.STRING
 },
 {
   tableName: 'Employee',
