@@ -98,6 +98,7 @@ exports.isIdExist = function(table, id){
 exports.findByUsername = function(username) {
   table.findOne({where: {username: username}})
     .then(function(rows) {
+			console.log('find by username rows: ', rows);
       return rows[0];
     });
 };
