@@ -3,8 +3,6 @@ var _ = require('lodash');
 var bcrypt = require('bcrypt');
 var config = require('../env/config.js')['postgres'];
 
-console.log(config);
-
 var sequelize = new Sequelize(
     config.databaseName,
     config.userName,
