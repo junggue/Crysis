@@ -1,7 +1,7 @@
 var db = require('../db/db.js');
 var dbHelper = require('../utils/dbHelper.js');
 var jwt = require('jsonwebtoken');
-var secret = require('../env/config.js');
+var secret = require('../env/config.js')['key'];
 
 module.exports = {
   '/login': {
@@ -17,9 +17,9 @@ module.exports = {
               .then(function(match) {
                 if(match) {
                   var token = jwt.sign(employee, secret.SECRET, {
-                    username: username,
-                    organizationId: organizationId,
-                    wardenName: wardenName
+                    'username': username,
+                    'organizationId': organizationId,
+                    'wardenName': wardenName
                   });
                   res.send({
                     token: token,

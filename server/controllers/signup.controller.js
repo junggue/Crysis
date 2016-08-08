@@ -1,7 +1,7 @@
 var db = require('../db/db.js');
 var dbHelper = require('../utils/dbHelper.js');
 var jwt = require('jsonwebtoken');
-var secret = require('../env/config.js');
+var secret = require('../env/config.js')['key'];
 
 module.exports = {
   'signup': {
@@ -28,9 +28,9 @@ module.exports = {
             dbHelper.insertData(req, res, table, newEmployee)
               .then(function(employee) {
                 var token = jwt.sign(employee, secret.SECRET), {
-                  username: username,
-                  organizationId: organizationId,
-                  wardenName: wardenName
+                  'username': username,
+                  'organizationId': organizationId,
+                  'wardenName': wardenName
                 };
                 res.json({
                   token: token,
