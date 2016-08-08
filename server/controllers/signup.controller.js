@@ -28,7 +28,6 @@ module.exports = {
             dbHelper.insertData(req, res, table, newEmployee)
               .then(function(employee) {
                 var token = jwt.sign(employee, secret.SECRET), {
-                  expiresIn: 1440 * 90,
                   username: username,
                   organizationId: organizationId,
                   wardenName: wardenName
