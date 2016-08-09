@@ -33,7 +33,8 @@ module.exports = (function () {
 			wardenName: 'woodmerik',
 			status: true,
 			isAdmin: true,
-			organizationId: 1
+			organizationId: 1,
+			deviceToken: 'jkjfaopushfkabrgbafglkjhalkjh'
 		},
 		{
 			username: 'terramatt',
@@ -44,7 +45,8 @@ module.exports = (function () {
 			wardenName: 'woodmerik',
 			status: true,
 			isAdmin: false,
-			organizationId: 1
+			organizationId: 1,
+			deviceToken: 'FKJAHOPUYGHBlkjblkajlkfhgla3i5p83y4'
 		},
 		{
 			username: 'yangjung',
@@ -55,7 +57,8 @@ module.exports = (function () {
 			wardenName: 'woodmerik',
 			status: true,
 			isAdmin: false,
-			organizationId: 1
+			organizationId: 1,
+			deviceToken: 'gasdfuas8d7uotoiywer8798698y09iy'
 		},
 		{
 			username: 'velazsteph',
@@ -66,7 +69,8 @@ module.exports = (function () {
 			wardenName: 'woodmerik',
 			status: true,
 			isAdmin: false,
-			organizationId: 1
+			organizationId: 1,
+			deviceToken: 'oiy986798yjlkjlkjoauysfasfgadf'
 		},
 		{
 			username: 'marcober',
@@ -77,7 +81,8 @@ module.exports = (function () {
 			wardenName: 'marcober',
 			status: true,
 			isAdmin: true,
-			organzationId: 2
+			organzationId: 2,
+			deviceToken: 'uyaousyfguhkjwehg2535634563245'
 		},
 		{
 			username: 'janefong',
@@ -88,7 +93,8 @@ module.exports = (function () {
 			wardenName: 'marcober',
 			status: true,
 			isAdmin: true,
-			organizationId: 2
+			organizationId: 2,
+			deviceToken: 'kshfopguykjawrhltkq2452u3857698eryuhgkjl'
 		},
 		{
 			username: 'kuhchris',
@@ -99,7 +105,8 @@ module.exports = (function () {
 			wardenName: 'marcober',
 			status: true,
 			isAdmin: false,
-			organizationId: 2
+			organizationId: 2,
+			deviceToken: 'ashfakjhfglk23o9485039785yiotuehbfigkljauytpwou'
 		},
 		{
 			username: 'mlester',
@@ -110,7 +117,8 @@ module.exports = (function () {
 			wardenName: 'mlester',
 			status: true,
 			isAdmin: true,
-			organizationId: 3
+			organizationId: 3,
+			deviceToken: '9925423k5jtbafsgjkhausyfghlkjfg'
 		},
 		{
 			username: 'junden',
@@ -121,7 +129,8 @@ module.exports = (function () {
 			wardenName: 'mlester',
 			status: true,
 			isAdmin: false,
-			organizationId: 3
+			organizationId: 3,
+			deviceToken: 'kjahfgoahgasfghjlasdo87g97687tuykjhgio565'
 		},
 		{
 			username: 'chenjust',
@@ -132,7 +141,8 @@ module.exports = (function () {
 			wardenName: 'mlester',
 			status: true,
 			isAdmin: true,
-			organzationId: 3
+			organzationId: 3,
+			deviceToken: 'akjsdhfsabfiudp8p867thg21k3h4g53k5jhtbe'
 		}
 	])
 
