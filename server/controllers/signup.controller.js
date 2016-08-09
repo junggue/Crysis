@@ -18,24 +18,23 @@ module.exports = {
         isAdmin: req.body.isAdmin,
         password: req.body.password
       };
-      dbHelper.getAll(db.Employee, 'username', newEmployee.username)
+      dbHelper.getRecord(db.Employee, 'username', newEmployee.username)
         .then(function(employee) {
           if(employee) {
-            res.status(401).json({
+            res.status(401).send({
               message: 'Username already exists'
             });
           } else {
-            dbHelper.insertData(req, res, db.Employee, newEmployee)
-              .then(function(employee) {
-                var token = jwt.sign(employee, secret.SECRET, {
-                  'username': username,
-                  'organizationId': organizationId,
-                  'wardenName': wardenName
-                });
-                res.json({
+            dbHelper.insertData(db.Employee, newEmployee)
+              .then(function(entry) {
+                var token = jwt.sign({
+                  id: entry.id,
+                  username: entry.username
+                }, secret.SECRET);
+                res.send({
                   token: token,
                   message: 'Employee entered into system',
-                  employee: employee
+                  employee: entry
                 });
               })
               .catch(function(err) {
