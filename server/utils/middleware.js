@@ -3,7 +3,7 @@ var secret = require('../env/config.js')['key'];
 
 module.exports.tokenCheck = function(req, res, next){
 
-	var token = req.body.token || req.query.token || req.headers['x-access-token'];
+	var token = req.headers['x-access-token'];
 
 	if (token) {
 		console.log("MIDDLEWARE")

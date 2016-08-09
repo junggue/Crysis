@@ -1,20 +1,11 @@
 var router = require('express').Router();
-var controller = require('../controllers/indexAPI.js');
+var controllers = require('../controllers/indexAPI.js')['controllers'];
 
-router.get('/user', controller['user'].get);
-router.get('/organization', controller['organization'].get);
-router.get('/emergency', controller['emergency'].get);
-
-router.post('/user', controller['user'].post);
-router.post('/organization', controller['organization'].post);
-router.post('/emergency', controller['emergency'].post);
-
-router.put('/user', controller['user'].put);
-router.put('/organization', controller['organization'].put);
-router.put('/emergency', controller['emergency'].put);
-
-router.delete('/user', controller['user'].delete);
-router.delete('/organization', controller['organization'].delete);
-router.delete('/emergency', controller['emergency'].delete);
+for(route in controllers){
+	router.get('/'+route, controllers[route].get)
+	router.post('/'+route, controllers[route].post)
+	router.put('/'+route, controllers[route].put)
+	router.delete('/'+route, controllers[route].delete)
+}
 
 module.exports = router;
