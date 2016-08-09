@@ -14,7 +14,13 @@ exports.getAll = function(table, column, value) {
 	}
 }
 
-exports.getRecord = function(table, id){
+exports.getRecord = function(table, column, value){
+	var columnValObj = {};
+	columnValObj[column] = value;
+	return (table.findOne({where: columnValObj}));
+};
+
+exports.getRecordById = function(table, id){
 	return (table.findById(id));
 };
 

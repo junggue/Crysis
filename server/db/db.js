@@ -127,7 +127,7 @@ Emergency.hasMany(Organization, {foreignKey: 'emergecnyId'});
 Employee.belongsTo(Organization, {foreignKey: 'organizationId'})
 Organization.belongsTo(Emergency, {foreignKey: 'emergencyId'})
 
-sequelize.sync({force:true}).then(function() {
+sequelize.sync().then(function() {
   console.log('Tables created');
 })
 

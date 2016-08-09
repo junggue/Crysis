@@ -11,22 +11,18 @@ module.exports = {
     },
     post: function(req, res) {
       var username = req.body.username;
-      var table = req.body.table;
-      console.log('username in login ', username);
-      dbHelper.getAll(table, table.username, username)
+      dbHelper.getRecord(db.Employee, 'username', username)
         .then(function(employee) {
-          console.log(employee)
           if(employee) {
-            console.log('if employee ln 17 login ', employee);
-            fnHelper.verifyPassword(db.Employee.password, employee.password)
+            fnHelper.verifyPassword(employee.hash, req.body.password)
               .then(function(match) {
                 if(match) {
-                  console.log('inside match ', match);
-                  var token = jwt.sign(employee, secret.SECRET, {
-                    'username': employee.username,
-                    'organizationId': employee.organizationId,
-                    'wardenName': employee.wardenName
-                  });
+                  //creat token
+                  var token = jwt.sign({
+                    id: employee.id,
+                    username: employee.username
+                  }, secret.SECRET);
+                  //respond with token
                   res.send({
                     token: token,
                     success: true,
@@ -34,7 +30,6 @@ module.exports = {
                     employee: employee
                   });
                 } else {
-                  console.log('in else, not logged in ');
                   res.status(401).json({
                     success: false,
                     message: 'Invalid login info'
@@ -42,7 +37,6 @@ module.exports = {
                 }
               });
           } else {
-            console.log('no employee, in else');
             res.status(401).json({
               success: false,
               message: 'Employee does not exist'
