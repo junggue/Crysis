@@ -6,10 +6,13 @@ var emergencyController = require('./emergency.controller.js');
 var loginController = require('./login.controller.js');
 var signupController = require('./signup.controller.js');
 
-module.exports = {
+module.exports.controllers = {
 	'user'				: userController['user'],
 	'organization': organizationController['organization'],
-	'emergency'	  : emergencyController['emergency'],
+	'emergency'	  : emergencyController['emergency']
+}
+
+module.exports.authControllers = {
 	'login' : loginController['login'],
 	'signup': signupController['signup']
 }
