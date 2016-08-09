@@ -19,6 +19,7 @@ app.use(function(req, res, next) {
 app.set('port', process.env.PORT || 3000);
 
 app.use('/api', testRouter);
+// app.use('/api', router);
 app.use(function(req, res) {
 	res.send('404: Page not Found', 404);
 });

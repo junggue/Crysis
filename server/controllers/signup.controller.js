@@ -18,7 +18,7 @@ module.exports = {
         isAdmin: req.body.isAdmin,
         password: req.body.password
       };
-      dbHelper.getAll(db.Employee, username, newEmployee.username)
+      dbHelper.getAll(db.Employee, 'username', newEmployee.username)
         .then(function(employee) {
           if(employee) {
             res.status(401).json({
@@ -27,11 +27,11 @@ module.exports = {
           } else {
             dbHelper.insertData(req, res, db.Employee, newEmployee)
               .then(function(employee) {
-                var token = jwt.sign(employee, secret.SECRET), {
-                  'username': db.Employee.username,
-                  'organizationId': db.Employee.organizationId,
-                  'wardenName': db.Employee.wardenName
-                };
+                var token = jwt.sign(employee, secret.SECRET, {
+                  'username': username,
+                  'organizationId': organizationId,
+                  'wardenName': wardenName
+                });
                 res.json({
                   token: token,
                   message: 'Employee entered into system',

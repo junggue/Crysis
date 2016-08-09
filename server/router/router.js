@@ -18,4 +18,16 @@ router.delete('/user', middleware.tokenCheck, controller['user'].delete);
 router.delete('/organization', middleware.tokenCheck, controller['organization'].delete);
 router.delete('/emergency', middleware.tokenCheck, controller['emergency'].delete);
 
+router.get('/login', controller['login'].get);
+router.get('/signup', controller['signup'].get);
+
+router.post('/login', controller['login'].post);
+router.post('/signup', controller['signup'].post);
+
+router.put('/login', controller['login'].put);
+router.put('/signup', controller['signup'].put);
+
+router.delete('/login', controller['login'].delete);
+router.delete('/signup', controller['signup'].delete);
+
 module.exports = router;

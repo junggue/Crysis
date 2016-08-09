@@ -5,22 +5,27 @@ var jwt = require('jsonwebtoken');
 var secret = require('../env/config.js')['key'];
 
 module.exports = {
-  '/login': {
+  'login': {
     get: function(req, res) {
       res.end('Received GET login');
     },
-    post: fuction(req, res) {
+    post: function(req, res) {
       var username = req.body.username;
-      dbHelper.getAll(db.Employee, username, newEmployee.username)
-        .then(function(user) {
+      var table = req.body.table;
+      console.log('username in login ', username);
+      dbHelper.getAll(table, table.username, username)
+        .then(function(employee) {
+          console.log(employee)
           if(employee) {
-            fnHelper.verifyPassword(employee.password, password)
+            console.log('if employee ln 17 login ', employee);
+            fnHelper.verifyPassword(db.Employee.password, employee.password)
               .then(function(match) {
                 if(match) {
+                  console.log('inside match ', match);
                   var token = jwt.sign(employee, secret.SECRET, {
-                    'username': db.Employee.username,
-                    'organizationId': db.Employee.organizationId,
-                    'wardenName': db.Employee.wardenName
+                    'username': employee.username,
+                    'organizationId': employee.organizationId,
+                    'wardenName': employee.wardenName
                   });
                   res.send({
                     token: token,
@@ -29,13 +34,15 @@ module.exports = {
                     employee: employee
                   });
                 } else {
+                  console.log('in else, not logged in ');
                   res.status(401).json({
                     success: false,
-                    message: 'Invalid password'
+                    message: 'Invalid login info'
                   });
                 }
               });
           } else {
+            console.log('no employee, in else');
             res.status(401).json({
               success: false,
               message: 'Employee does not exist'

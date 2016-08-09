@@ -121,13 +121,13 @@ var Emergency = sequelize.define('Emergency', {
   timestamps: false
 });
 
-Organization.hasMany(Employee, {foreignKey: 'OrganizationId'});
-Emergency.hasMany(Organization, {foreignKey: 'EmergecnyId'});
+Organization.hasMany(Employee, {foreignKey: 'organizationId'});
+Emergency.hasMany(Organization, {foreignKey: 'emergecnyId'});
 
-Employee.belongsTo(Organization, {foreignKey: 'OrganizationId'})
-Organization.belongsTo(Emergency, {foreignKey: 'EmergencyId'})
+Employee.belongsTo(Organization, {foreignKey: 'organizationId'})
+Organization.belongsTo(Emergency, {foreignKey: 'emergencyId'})
 
-sequelize.sync().then(function() {
+sequelize.sync({force:true}).then(function() {
   console.log('Tables created');
 })
 
