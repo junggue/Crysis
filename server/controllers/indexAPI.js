@@ -5,11 +5,13 @@ var organizationController = require('./organization.controller.js');
 var emergencyController = require('./emergency.controller.js');
 var loginController = require('./login.controller.js');
 var signupController = require('./signup.controller.js');
+var deviceTokenController = require('./deviceToken.controller.js');
 
 module.exports.controllers = {
 	'user'				: userController['user'],
 	'organization': organizationController['organization'],
-	'emergency'	  : emergencyController['emergency']
+	'emergency'	  : emergencyController['emergency'],
+	'deviceToken' : deviceTokenController['deviceToken']
 }
 
 module.exports.authControllers = {
