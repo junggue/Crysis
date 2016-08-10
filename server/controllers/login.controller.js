@@ -20,7 +20,9 @@ module.exports = {
                   //creat token
                   var token = jwt.sign({
                     id: employee.id,
-                    username: employee.username
+                    username: employee.username,
+                    orgId: employee.organizationId,
+                    warden: employee.wardenName
                   }, secret.SECRET);
                   //respond with token
                   res.send({

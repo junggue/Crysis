@@ -11,6 +11,8 @@ module.exports.tokenCheck = function(req, res, next){
 			if (err) {
 				return res.send(err.message);
 			} else {
+				console.log(decoded, "this had been decoded");
+				req.user = decoded
 				next();
 			}
 		});

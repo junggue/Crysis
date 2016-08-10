@@ -4,8 +4,9 @@ var dbHelper = require('../utils/dbHelper.js');
 module.exports = {
   'deviceToken': {
     put: function(req, res){
-      req.body.deviceToken
-      dbHelper.updateData()
+      var currentUser = req.user.username
+      var dvcToken = req.body.deviceToken
+      dbHelper.updateDataByName(db.Employee, currentUser, )
     }
   }
 }

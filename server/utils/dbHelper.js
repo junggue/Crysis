@@ -32,6 +32,10 @@ exports.updateData = function(table, id, newColumnData){
 	return table.update(newColumnData, {where:{id:id}});
 };
 
+exports.updateDataByName = function(table, username, newColumnData){
+	return table.update(newColumnData, {where:{username: username}});
+}
+
 exports.deleteData = function(table, id){
 	return (table.findById(id));
 };
