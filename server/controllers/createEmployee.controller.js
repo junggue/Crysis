@@ -1,12 +1,10 @@
 var db = require('../db/db.js');
 var dbHelper = require('../utils/dbHelper.js');
-var jwt = require('jsonwebtoken');
-var secret = require('../env/config.js')['key'];
 
 module.exports = {
-  'signup': {
+  'createEmployee': {
     get: function(req, res) {
-      res.end('Received GET signup');
+      res.end('Received GET createEmployee');
     },
     post: function(req, res) {
       var newEmployee = {
@@ -17,6 +15,7 @@ module.exports = {
         wardenName: req.body.wardenName,
         isAdmin: req.body.isAdmin,
         password: req.body.password
+        //get orgId from admin info (token?)
       };
       dbHelper.getRecord(db.Employee, 'username', newEmployee.username)
         .then(function(employee) {
@@ -27,12 +26,7 @@ module.exports = {
           } else {
             dbHelper.insertData(db.Employee, newEmployee)
               .then(function(entry) {
-                var token = jwt.sign({
-                  id: entry.id,
-                  username: entry.username
-                }, secret.SECRET);
                 res.send({
-                  token: token,
                   message: 'Employee entered into system',
                   employee: entry
                 });
@@ -44,10 +38,10 @@ module.exports = {
         });
     },
     put: function(req, res) {
-      res.end('Received PUT signup');
+      res.end('Received PUT createEmployee');
     },
     delete: function(req, res) {
-      res.end('Received DELETE signup');
+      res.end('Received DELETE createEmployee');
     }
   }
 }

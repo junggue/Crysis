@@ -19,8 +19,9 @@ module.exports = {
                 if(match) {
                   //creat token
                   var token = jwt.sign({
-                    id: employee.id,
-                    username: employee.username
+                    username: employee.username,
+                    wardenName: employee.username,
+                    organizationId: employee.organizationId
                   }, secret.SECRET);
                   //respond with token
                   res.send({
