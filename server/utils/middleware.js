@@ -6,7 +6,6 @@ module.exports.tokenCheck = function(req, res, next){
 	var token = req.headers['x-access-token'];
 
 	if (token) {
-		console.log("MIDDLEWARE")
 		jwt.verify(token, secret.SECRET, function(err, decoded){
 			if (err) {
 				return res.send(err.message);

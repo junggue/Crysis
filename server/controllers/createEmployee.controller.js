@@ -15,7 +15,6 @@ module.exports = {
         wardenName: req.body.wardenName,
         isAdmin: req.body.isAdmin,
         password: req.body.password
-        //get orgId from admin info (token?)
       };
       dbHelper.getRecord(db.Employee, 'username', newEmployee.username)
         .then(function(employee) {
