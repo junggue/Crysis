@@ -77,7 +77,7 @@ var Employee = sequelize.define('Employee', {
 });
 
 var Organization = sequelize.define('Organization', {
-  username: {
+  orgName: {
     type: Sequelize.STRING,
     allowNull: false,
     unique: true,
@@ -90,7 +90,7 @@ var Organization = sequelize.define('Organization', {
   orgSalt: Sequelize.STRING,
   orgHash: Sequelize.STRING,
   //Auth for organization
-  password: {
+  orgPassword: {
     type: Sequelize.VIRTUAL,
     allowNull: false,
     validate: {

@@ -5,9 +5,9 @@ var jwt = require('jsonwebtoken');
 var secret = require('../env/config.js')['key'];
 
 module.exports = {
-  'login': {
+  'mobileLogin': {
     get: function(req, res) {
-      res.end('Received GET login');
+      res.end('Received GET mobileLogin');
     },
     post: function(req, res) {
       var username = req.body.username;
@@ -46,10 +46,10 @@ module.exports = {
         });
     },
     put: function(req, res) {
-      res.end('Received PUT login');
+      res.end('Received PUT mobileLogin');
     },
     delete: function(req, res) {
-      res.end('Received DELETE login');
+      res.end('Received DELETE mobileLogin');
     }
   }
 }

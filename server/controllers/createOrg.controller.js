@@ -8,10 +8,10 @@ module.exports = {
     },
     post: function(req, res) {
       var newOrg = {
-        username: req.body.username,
-        password: req.body.password
+        orgName: req.body.orgName,
+        orgPassword: req.body.orgPassword
       };
-      dbHelper.getRecord(db.Organization, 'username', newOrg.username)
+      dbHelper.getRecord(db.Organization, 'orgName', newOrg.orgName)
         .then(function(org) {
           if(org) {
             res.status(401).send({

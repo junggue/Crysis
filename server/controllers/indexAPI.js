@@ -4,7 +4,8 @@ var userController = require('./user.controller.js');
 var organizationController = require('./organization.controller.js');
 var emergencyController = require('./emergency.controller.js');
 var createEmployeeController = require('./createEmployee.controller.js');
-var loginController = require('./login.controller.js');
+var mobileLoginController = require('./mobileLogin.controller.js');
+var adminLoginController = require('./adminLogin.controller.js');
 var createOrgController = require('./createOrg.controller.js');
 var createAdminController = require('./createAdmin.controller.js');
 
@@ -16,7 +17,8 @@ module.exports.controllers = {
 }
 
 module.exports.authControllers = {
-	'login'      : loginController['login'],
+	'mobileLogin': mobileLoginController['mobileLogin'],
+	'adminLogin' : adminLoginController['adminLogin'],
 	'createOrg'  : createOrgController['createOrg'],
 	'createAdmin': createAdminController['createAdmin']
 }
