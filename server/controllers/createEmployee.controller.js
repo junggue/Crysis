@@ -14,7 +14,8 @@ module.exports = {
         isWarden: req.body.isWarden,
         wardenName: req.body.wardenName,
         isAdmin: req.body.isAdmin,
-        password: req.body.password
+        password: req.body.password,
+        organizationId: req.body.organizationId
       };
       dbHelper.getRecord(db.Employee, 'username', newEmployee.username)
         .then(function(employee) {

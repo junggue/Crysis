@@ -38,7 +38,8 @@ module.exports = {
                               token: token,
                               success: true,
                               message: 'Passwords match',
-                              org: org
+                              org: org,
+                              organizationId: org.id
                             });
                           } else {
                             res.status(401).json({
