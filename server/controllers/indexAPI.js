@@ -11,7 +11,7 @@ module.exports.controllers = {
 	'user'				: userController['user'],
 	'organization': organizationController['organization'],
 	'emergency'	  : emergencyController['emergency'],
-	// 'deviceToken' : deviceTokenController['deviceToken']
+	'deviceToken' : deviceTokenController['deviceToken']
 }
 
 module.exports.authControllers = {

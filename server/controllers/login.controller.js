@@ -18,19 +18,23 @@ module.exports = {
               .then(function(match) {
                 if(match) {
                   //creat token
-                  var token = jwt.sign({
-                    id: employee.id,
-                    username: employee.username,
-                    orgId: employee.organizationId,
-                    warden: employee.wardenName
-                  }, secret.SECRET);
-                  //respond with token
-                  res.send({
-                    token: token,
-                    success: true,
-                    message: 'Passwords match',
-                    employee: employee
-                  });
+                  var currentUser = req.body.username;
+                  var dvcToken = req.body.deviceToken;
+                  dbHelper.updateDataByName(db.Employee, currentUser, {deviceToken: dvcToken}).then(function(){
+                    var token = jwt.sign({
+                      id: employee.id,
+                      username: employee.username,
+                      orgId: employee.organizationId,
+                      warden: employee.wardenName
+                    }, secret.SECRET);
+                    //respond with token
+                    res.send({
+                      token: token,
+                      success: true,
+                      message: 'Passwords match',
+                      employee: employee
+                    });
+                  })
                 } else {
                   res.status(401).json({
                     success: false,
