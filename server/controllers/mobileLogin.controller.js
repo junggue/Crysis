@@ -5,9 +5,9 @@ var jwt = require('jsonwebtoken');
 var secret = require('../env/config.js')['key'];
 
 module.exports = {
-  'login': {
+  'mobileLogin': {
     get: function(req, res) {
-      res.end('Received GET login');
+      res.end('Received GET mobileLogin');
     },
     post: function(req, res) {
       var username = req.body.username;
@@ -19,8 +19,9 @@ module.exports = {
                 if(match) {
                   //creat token
                   var token = jwt.sign({
-                    id: employee.id,
-                    username: employee.username
+                    username: employee.username,
+                    wardenName: employee.username,
+                    organizationId: employee.organizationId
                   }, secret.SECRET);
                   //respond with token
                   res.send({
@@ -45,10 +46,10 @@ module.exports = {
         });
     },
     put: function(req, res) {
-      res.end('Received PUT login');
+      res.end('Received PUT mobileLogin');
     },
     delete: function(req, res) {
-      res.end('Received DELETE login');
+      res.end('Received DELETE mobileLogin');
     }
   }
 }
