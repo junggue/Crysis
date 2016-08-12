@@ -8,12 +8,16 @@ var mobileLoginController = require('./mobileLogin.controller.js');
 var adminLoginController = require('./adminLogin.controller.js');
 var createOrgController = require('./createOrg.controller.js');
 var createAdminController = require('./createAdmin.controller.js');
+var deviceTokenController = require('./deviceToken.controller.js');
+var alertController = require('./alert.controller.js');
 
 module.exports.controllers = {
 	'user'				  : userController['user'],
 	'organization'  : organizationController['organization'],
 	'emergency'	    : emergencyController['emergency'],
 	'createEmployee': createEmployeeController['createEmployee']
+	'deviceToken' : deviceTokenController['deviceToken'],
+	'alert'       : alertController['alert']
 }
 
 module.exports.authControllers = {
@@ -21,4 +25,3 @@ module.exports.authControllers = {
 	'adminLogin' : adminLoginController['adminLogin'],
 	'createOrg'  : createOrgController['createOrg'],
 	'createAdmin': createAdminController['createAdmin']
-}
