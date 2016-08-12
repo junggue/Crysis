@@ -15,9 +15,9 @@ module.exports.controllers = {
 	'user'				  : userController['user'],
 	'organization'  : organizationController['organization'],
 	'emergency'	    : emergencyController['emergency'],
-	'createEmployee': createEmployeeController['createEmployee']
-	'deviceToken' : deviceTokenController['deviceToken'],
-	'alert'       : alertController['alert']
+	'createEmployee': createEmployeeController['createEmployee'],
+	'deviceToken'   : deviceTokenController['deviceToken'],
+	'alert'         : alertController['alert']
 }
 
 module.exports.authControllers = {
@@ -25,3 +25,4 @@ module.exports.authControllers = {
 	'adminLogin' : adminLoginController['adminLogin'],
 	'createOrg'  : createOrgController['createOrg'],
 	'createAdmin': createAdminController['createAdmin']
+}
