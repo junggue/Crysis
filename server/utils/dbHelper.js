@@ -14,6 +14,10 @@ exports.getAll = function(table, column, value) {
 	}
 }
 
+exports.getTokens = function(table, column, orgID){
+	return (table.findAll({where: {organizationId: orgID}}));
+}
+
 exports.getRecord = function(table, column, value){
 	var columnValObj = {};
 	columnValObj[column] = value;
@@ -31,6 +35,10 @@ exports.getElement = function(table, id, col){
 exports.updateData = function(table, id, newColumnData){
 	return table.update(newColumnData, {where:{id:id}});
 };
+
+exports.updateDataByName = function(table, username, newColumnData){
+	return table.update(newColumnData, {where:{username: username}});
+}
 
 exports.deleteData = function(table, id){
 	return (table.findById(id));
