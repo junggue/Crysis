@@ -34,8 +34,8 @@ module.exports = {
                               .then(function(isAdmin) {
                                 if(isAdmin) {
                                   var token = jwt.sign({
-                                    id: org.id
-                                    orgName: org.orgName,
+                                    organizationId: org.id,
+                                    orgName: org.orgName
                                   }, secret.SECRET);
                                   res.send({
                                     token: token,

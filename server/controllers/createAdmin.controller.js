@@ -30,14 +30,15 @@ module.exports = {
               .then(function(match) {
                 if(match) {
                   var token = jwt.sign({
-                    id: org.id,
+                    organizationId: org.id,
                     orgName: org.orgName
                   }, secret.SECRET);
                   res.send({
                     token: token,
                     success: true,
                     message: 'Passwords match',
-                    org: org
+                    org: org,
+                    organizationId: org.id
                   });
                   dbHelper.getRecord(db.Employee, 'username', newAdmin.username)
                     .then(function(admin) {

@@ -25,7 +25,7 @@ module.exports = {
                       id: employee.id,
                       username: employee.username,
                       wardenName: employee.wardenName,
-                      orgId: employee.organizationId,
+                      organizationId: employee.organizationId,
                     }, secret.SECRET);
                     //respond with token
                     res.send({

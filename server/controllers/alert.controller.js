@@ -5,17 +5,16 @@ var apple = require('../utils/applepushHelper.js');
 module.exports = {
   'alert': {
     put: function(req, res){
-      var orgId = req.user.orgId;
-      dbHelper.updateData(db.Organization, orgId, { emergencyStatus: true });
-      dbHelper.getTokens(db.Employee, 'deviceToken', orgId)
+      var organizationId = req.user.organizationId;
+      dbHelper.updateData(db.Organization, organizationId, { emergencyStatus: true });
+      dbHelper.getTokens(db.Employee, 'deviceToken', organizationId)
       .then(function(data){
         var justDeviceTokenArr = data.filter(function(element){
           return element['deviceToken'] !== null;
         }).map(function(entry){
           return apple.createDevice(entry['deviceToken']);
         })
-        console.log(justDeviceTokenArr, "just token array")
-        
+
         var note = apple.createNote();
         note.expiry = Math.floor(Date.now() / 1000) + 3600;
         note.badge = 1;
