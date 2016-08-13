@@ -101,7 +101,7 @@ var Organization = sequelize.define('Organization', {
       var orgHash = bcrypt.hashSync(value, orgSalt);
       this.setDataValue('orgSalt', orgSalt);
       this.setDataValue('orgHash', orgHash);
-      this.setDataValue('password', value);
+      this.setDataValue('orgPassword', value);
     }
   }
 },
@@ -121,7 +121,7 @@ var Emergency = sequelize.define('Emergency', {
 });
 
 Organization.hasMany(Employee, {foreignKey: 'organizationId'});
-Emergency.hasMany(Organization, {foreignKey: 'emergecnyId'});
+Emergency.hasMany(Organization, {foreignKey: 'emergencyId'});
 
 Employee.belongsTo(Organization, {foreignKey: 'organizationId'})
 Organization.belongsTo(Emergency, {foreignKey: 'emergencyId'})

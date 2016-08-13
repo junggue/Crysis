@@ -21,13 +21,13 @@ module.exports = {
       dbHelper.getRecord(db.Organization, 'orgName', org.orgName)
         .then(function(org) {
           if(org) {
-            fnHelper.verifyPassword(org.orgHash, org.orgPassword)
+            fnHelper.verifyPassword(org.orgHash, req.body.orgPassword)
               .then(function(match) {
                 if(match) {
                   dbHelper.getRecord(db.Employee, 'username', admin.username)
                     .then(function(admin) {
                       if(admin) {
-                        fnHelper.verifyPassword(admin.hash, admin.password)
+                        fnHelper.verifyPassword(admin.hash, req.body.password)
                         .then(function(match) {
                           if(match) {
                             dbHelper.getRecord(db.Employee, 'isAdmin', admin.isAdmin)
