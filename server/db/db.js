@@ -46,7 +46,7 @@ var Employee = sequelize.define('Employee', {
   wardenName: Sequelize.STRING,
   status: {
     type: Sequelize.STRING,
-    defaultValue: null
+    defaultValue: 'pending'
   },
   isAdmin: {
     type: Sequelize.BOOLEAN,
