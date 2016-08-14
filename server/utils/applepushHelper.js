@@ -1,11 +1,11 @@
 var apn = require('apn');
 var fs = require('fs');
 
-var cert = fs.readFileSync('server/keys/cert.pem');
-var key = fs.readFileSync('server/keys/key.pem');
+// var cert = fs.readFileSync('server/keys/cert.pem');
+// var key = fs.readFileSync('server/keys/key.pem');
 
-// var cert = fs.readFileSync('server/keys/dummy.cert.pem');
-// var key = fs.readFileSync('server/keys/dummy.key.pem');
+var cert = fs.readFileSync('server/keys/dummy.cert.pem');
+var key = fs.readFileSync('server/keys/dummy.key.pem');
 
 var options = {
   "production": false,
