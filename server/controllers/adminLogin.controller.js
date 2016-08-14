@@ -30,17 +30,27 @@ module.exports = {
                         fnHelper.verifyPassword(admin.hash, req.body.password)
                         .then(function(match) {
                           if(match) {
-                            var token = jwt.sign({
-                              id: org.id,
-                              orgName: org.orgName
-                            }, secret.SECRET);
-                            res.send({
-                              token: token,
-                              success: true,
-                              message: 'Passwords match',
-                              org: org,
-                              organizationId: org.id
-                            });
+                            dbHelper.getRecord(db.Employee, 'isAdmin', admin.isAdmin)
+                              .then(function(isAdmin) {
+                                if(isAdmin) {
+                                  var token = jwt.sign({
+                                    organizationId: org.id,
+                                    orgName: org.orgName
+                                  }, secret.SECRET);
+                                  res.send({
+                                    token: token,
+                                    success: true,
+                                    message: 'Passwords match',
+                                    org: org,
+                                    organizationId: org.id
+                                  });
+                                } else {
+                                  res.status(403).json({
+                                    success: false,
+                                    message: 'Employee is not authorized'
+                                  });
+                                }
+                              });
                           } else {
                             res.status(401).json({
                               success: false,

@@ -11,7 +11,7 @@ module.exports = {
         orgName: req.body.orgName,
         orgPassword: req.body.orgPassword
       };
-      dbHelper.getRecord(db.Organization, 'orgName', newOrg.orgName)
+      dbHelper.getRecord(db.Organization, 'orgname', newOrg.orgName)
         .then(function(org) {
           if(org) {
             res.status(401).send({

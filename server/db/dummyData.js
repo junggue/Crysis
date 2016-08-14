@@ -4,20 +4,20 @@ module.exports = (function () {
 
 	db.Organization.bulkCreate([
 		{
-			username: 'Toiletz',
-			password: 'password123',
+			orgName: 'Toiletz',
+			orgPassword: 'password123',
 			safezone: 'Courtyard',
 			emergencyStatus: false
 		},
 		{
-			username: 'Cool & Co',
-			password: 'thisisourpassword',
+			orgName: 'Cool & Co',
+			orgPassword: 'thisisourpassword',
 			safezone: 'alley behind building C',
 			emergencyStatus: false
 		},
 		{
-			username: 'Sidecar Donuts',
-			password: 'doughnutsaregreat',
+			orgName: 'Sidecar Donuts',
+			orgPassword: 'doughnutsaregreat',
 			safezone: 'park across the street',
 			emergencyStatus: false
 		}
@@ -31,7 +31,7 @@ module.exports = (function () {
 			name: 'Merik Wood',
 			isWarden: true,
 			wardenName: 'woodmerik',
-			status: true,
+			status: 'safe',
 			isAdmin: true,
 			organizationId: 1,
 			deviceToken: 'jkjfaopushfkabrgbafglkjhalkjh'
@@ -43,7 +43,7 @@ module.exports = (function () {
 			name: 'Matt Terra',
 			isWarden: false,
 			wardenName: 'woodmerik',
-			status: true,
+			status: 'safe',
 			isAdmin: false,
 			organizationId: 1,
 			deviceToken: 'FKJAHOPUYGHBlkjblkajlkfhgla3i5p83y4'
@@ -55,7 +55,7 @@ module.exports = (function () {
 			name: 'Jung Yang',
 			isWarden: false,
 			wardenName: 'woodmerik',
-			status: true,
+			status: 'safe',
 			isAdmin: false,
 			organizationId: 1,
 			deviceToken: 'gasdfuas8d7uotoiywer8798698y09iy'
@@ -67,7 +67,7 @@ module.exports = (function () {
 			name: 'Steph Velaz',
 			isWarden: false,
 			wardenName: 'woodmerik',
-			status: true,
+			status: 'safe',
 			isAdmin: false,
 			organizationId: 1,
 			deviceToken: 'oiy986798yjlkjlkjoauysfasfgadf'
@@ -79,7 +79,7 @@ module.exports = (function () {
 			name: 'Marco Ber',
 			isWarden: true,
 			wardenName: 'marcober',
-			status: true,
+			status: 'safe',
 			isAdmin: true,
 			organzationId: 2,
 			deviceToken: 'uyaousyfguhkjwehg2535634563245'
@@ -91,7 +91,7 @@ module.exports = (function () {
 			name: 'Jane Fong',
 			isWarden: false,
 			wardenName: 'marcober',
-			status: true,
+			status: 'safe',
 			isAdmin: true,
 			organizationId: 2,
 			deviceToken: 'kshfopguykjawrhltkq2452u3857698eryuhgkjl'
@@ -103,7 +103,7 @@ module.exports = (function () {
 			name: 'Chris Kuh',
 			isWarden: false,
 			wardenName: 'marcober',
-			status: true,
+			status: 'safe',
 			isAdmin: false,
 			organizationId: 2,
 			deviceToken: 'ashfakjhfglk23o9485039785yiotuehbfigkljauytpwou'
@@ -115,7 +115,7 @@ module.exports = (function () {
 			name: 'Sean Lester',
 			isWarden: true,
 			wardenName: 'mlester',
-			status: true,
+			status: 'safe',
 			isAdmin: true,
 			organizationId: 3,
 			deviceToken: '9925423k5jtbafsgjkhausyfghlkjfg'
@@ -127,7 +127,7 @@ module.exports = (function () {
 			name: 'Den Jun',
 			isWarden: false,
 			wardenName: 'mlester',
-			status: true,
+			status: 'safe',
 			isAdmin: false,
 			organizationId: 3,
 			deviceToken: 'kjahfgoahgasfghjlasdo87g97687tuykjhgio565'
@@ -139,7 +139,7 @@ module.exports = (function () {
 			name: 'Just Chen',
 			isWarden: false,
 			wardenName: 'mlester',
-			status: true,
+			status: 'safe',
 			isAdmin: true,
 			organzationId: 3,
 			deviceToken: 'akjsdhfsabfiudp8p867thg21k3h4g53k5jhtbe'
