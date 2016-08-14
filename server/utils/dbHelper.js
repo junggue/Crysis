@@ -18,6 +18,10 @@ exports.getTokens = function(table, column, orgID){
 	return (table.findAll({where: {organizationId: orgID}}));
 }
 
+exports.getTokensByWarden = function(table, column, wardenName){
+	return (table.findAll({where: {wardenName: wardenName}}));
+}
+
 exports.getRecord = function(table, column, value){
 	var columnValObj = {};
 	columnValObj[column] = value;
