@@ -10,6 +10,7 @@ var createOrgController = require('./createOrg.controller.js');
 var createAdminController = require('./createAdmin.controller.js');
 var deviceTokenController = require('./deviceToken.controller.js');
 var alertController = require('./alert.controller.js');
+var statusUpdateController = require('./statusUpdate.controller.js');
 
 module.exports.controllers = {
 	'user'				  : userController['user'],
@@ -17,7 +18,8 @@ module.exports.controllers = {
 	'emergency'	    : emergencyController['emergency'],
 	'createEmployee': createEmployeeController['createEmployee'],
 	'deviceToken'   : deviceTokenController['deviceToken'],
-	'alert'         : alertController['alert']
+	'alert'         : alertController['alert'],
+	'statusUpdate'  : statusUpdateController['statusUpdate']
 }
 
 module.exports.authControllers = {
