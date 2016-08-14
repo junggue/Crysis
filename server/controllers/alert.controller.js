@@ -15,7 +15,7 @@ module.exports = {
           return apple.createDevice(entry['deviceToken']);
         })
         console.log(justDeviceTokenArr, "just token array")
-        
+
         var note = apple.createNote();
         note.expiry = Math.floor(Date.now() / 1000) + 3600;
         note.badge = 1;
