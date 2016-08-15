@@ -5,11 +5,13 @@ var apple = require('../utils/applepushHelper.js');
 module.exports = {
   'statusUpdate': {
     put: function(req, res){
-      var orgId = req.user.orgId;
-      var userStatus = req.body.userStatus;
+      var organizationId = req.user.organizationId;
+      var userStatus = req.body.status;
       var userWarden = req.user.wardenName;
+      console.log('userStatus', userStatus);
       dbHelper.updateDataByName(db.Employee, req.user.username, {status: userStatus})
         .then(function(){
+          console.log('inside then functions after updating status');
           return dbHelper.getTokensByWarden(db.Employee, 'deviceToken', userWarden);
         })
         .then(function(data){
@@ -39,7 +41,7 @@ module.exports = {
       var userWarden = req.user.wardenName;
       dbHelper.getAll(db.Employee, "wardenName", userWarden)
         .then(function(userStatusData){
-          console.log("userStatusData from db query for employee stats", userStatusData);
+          // console.log("userStatusData from db query for employee stats", userStatusData);
           res.status(200).send(userStatusData);
         })
         .catch(function(err){
