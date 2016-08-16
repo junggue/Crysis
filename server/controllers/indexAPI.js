@@ -24,6 +24,10 @@ module.exports.controllers = {
 module.exports.authControllers = {
 	'mobileLogin': mobileLoginController['mobileLogin'],
 	'adminLogin' : adminLoginController['adminLogin'],
+<<<<<<< b311af7c3ca02a9864435a4069ac04078816053d
 	'createAdmin': createAdminController['createAdmin'],
 	'webLogin' : webloginController['webLogin']
+=======
+	'createAdmin': createAdminController['createAdmin']
+>>>>>>> [REFACTOR] Removed redundancies in org and user endpoints
 }
