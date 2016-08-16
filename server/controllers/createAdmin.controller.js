@@ -23,56 +23,37 @@ module.exports = {
         isAdmin: true,
         password: req.body.password
       };
-      dbHelper.getRecord(db.Organization, 'orgName', org.orgName)
-        .then(function(org) {
-          if(org) {
-            fnHelper.verifyPassword(org.orgHash, req.body.orgPassword)
-              .then(function(match) {
-                if(match) {
-                  var token = jwt.sign({
-                    organizationId: org.id,
-                    orgName: org.orgName
-                  }, secret.SECRET);
-                  res.send({
-                    token: token,
-                    success: true,
-                    message: 'Passwords match',
-                    org: org,
-                    organizationId: org.id
-                  });
-                  dbHelper.getRecord(db.Employee, 'username', newAdmin.username)
-                    .then(function(admin) {
-                      if(admin) {
-                        res.status(401).send({
-                          message: 'Administrator already exists'
-                        });
-                      } else {
-                        dbHelper.insertData(db.Employee, newAdmin)
-                          .then(function(entry) {
-                            res.send({
-                              message: 'Administrator entered into system',
-                              admin: entry
-                            });
-                          })
-                          .catch(function(err) {
-                            res.send(err);
-                          });
-                      }
-                    });
-                } else {
-                  res.status(401).json({
-                    success: false,
-                    message: 'Invalid organization login info'
-                  });
-                }
+      fnHelper.verifyPassword(org.orgHash, org.orgPassword)
+        .then(function(match) {
+          if(match) {
+            var token = jwt.sign({
+              organizationId: org.id,
+              orgName: org.orgName
+            }, secret.SECRET);
+            res.send({
+              token: token,
+              success: true,
+              message: 'Passwords match',
+              org: org,
+              organizationId: org.id
+            });
+            dbHelper.insertData(db.Employee, newAdmin)
+              .then(function(entry) {
+                res.send({
+                  message: 'Administrator entered into system',
+                  admin: entry
+                });
               })
+              .catch(function(err) {
+                res.send(err);
+              });
           } else {
             res.status(401).json({
               success: false,
-              message: 'Organization does not exist'
-            })
+              message: 'Invalid organization login info'
+            });
           }
-        });
+        })
     },
     put: function(req, res) {
       res.end('Received PUT createAdmin');
