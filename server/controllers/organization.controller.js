@@ -24,8 +24,8 @@ module.exports = {
 		},
 		post: function(req, res){
 			var newOrg = {
-				username				: req.body.username,
-				password				: req.body.password
+				username: req.body.username,
+				password: req.body.password
 			}
 			dbHelper.insertData(db.Organization, newOrg)
 				.then(function(data){

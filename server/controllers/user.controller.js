@@ -31,8 +31,8 @@ module.exports = {
 				wardenName		: req.body.wardenName,
 				status				: req.body.status,
 				isAdmin				: req.body.isAdmin,
-				password			: req.body.password,
-				OrganizationId: req.body.OrganizationId
+				password			: req.body.password
+				// organizationId: req.body.OrganizationId
 			}
 			dbHelper.insertData(db.Employee, newUser)
 				.then(function(data){

@@ -22,6 +22,7 @@ module.exports = {
         wardenName: req.body.wardenName,
         isAdmin: true,
         password: req.body.password
+        // organizationId: req.body.organizationId
       };
       fnHelper.verifyPassword(org.orgHash, org.orgPassword)
         .then(function(match) {
