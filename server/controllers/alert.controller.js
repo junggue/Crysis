@@ -32,7 +32,16 @@ module.exports = {
       })
     },
     get: function(req, res){
-      res.end('received alert get request')
+      var organizationId = req.user.organizationId;
+      dbHelper.getRecordById(db.Organization, organizationId)
+        .then(function(data){
+          console.log('data.emergencyStatus', data.emergencyStatus);
+          console.log('data from get Alert method', data);
+          res.status(200).send({emergencyStatus: data.emergencyStatus});
+        })
+        .catch(function(err){
+          res.send()
+        })
     },
     post: function(req, res){
       res.end('received alert post request')
