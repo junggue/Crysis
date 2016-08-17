@@ -24,13 +24,8 @@ module.exports = {
 		},
 		post: function(req, res){
 			var newOrg = {
-				username				: req.body.username,
-				safezone				: req.body.safezone,
-				emergencyStatus	: req.body.emergencyStatus,
-				orgSalt					: req.body.orgSalt,
-				orgHash					: req.body.orgHash,
-				password				: req.body.password,
-				EmergencyId			: req.body.EmergencyId
+				username: req.body.username,
+				password: req.body.password
 			}
 			dbHelper.insertData(db.Organization, newOrg)
 				.then(function(data){

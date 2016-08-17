@@ -10,42 +10,32 @@ module.exports = {
       res.end('Received GET mobileLogin');
     },
     post: function(req, res) {
-      var username = req.body.username;
-      dbHelper.getRecord(db.Employee, 'username', username)
-        .then(function(employee) {
-          if(employee) {
-            fnHelper.verifyPassword(employee.hash, req.body.password)
-              .then(function(match) {
-                if(match) {
-                  //creat token
-                  var currentUser = req.body.username;
-                  var dvcToken = req.body.deviceToken;
-                  dbHelper.updateDataByName(db.Employee, currentUser, {deviceToken: dvcToken}).then(function(){
-                    var token = jwt.sign({
-                      id: employee.id,
-                      username: employee.username,
-                      wardenName: employee.wardenName,
-                      organizationId: employee.organizationId,
-                    }, secret.SECRET);
-                    //respond with token
-                    res.send({
-                      token: token,
-                      success: true,
-                      message: 'Passwords match',
-                      employee: employee
-                    });
-                  })
-                } else {
-                  res.status(401).json({
-                    success: false,
-                    message: 'Invalid login info'
-                  });
-                }
-              });
+      fnHelper.verifyPassword(employee.hash, req.body.password)
+        .then(function(match) {
+          if(match) {
+            //creat token
+            var currentUser = req.body.username;
+            var dvcToken = req.body.deviceToken;
+            dbHelper.updateDataByName(db.Employee, currentUser, {deviceToken: dvcToken})
+              .then(function(){
+                var token = jwt.sign({
+                  id: employee.id,
+                  username: employee.username,
+                  wardenName: employee.wardenName,
+                  organizationId: employee.organizationId,
+                }, secret.SECRET);
+                //respond with token
+                res.send({
+                  token: token,
+                  success: true,
+                  message: 'Passwords match',
+                  employee: employee
+                });
+              })
           } else {
             res.status(401).json({
               success: false,
-              message: 'Employee does not exist'
+              message: 'Invalid login info'
             });
           }
         });

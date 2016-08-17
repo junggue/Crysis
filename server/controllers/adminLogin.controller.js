@@ -18,64 +18,44 @@ module.exports = {
         username: req.body.username,
         password: req.body.password
       };
-      dbHelper.getRecord(db.Organization, 'orgName', org.orgName)
-        .then(function(org) {
-          if(org) {
-            fnHelper.verifyPassword(org.orgHash, req.body.orgPassword)
+      fnHelper.verifyPassword(org.orgHash, req.body.orgPassword)
+        .then(function(match) {
+          if(match) {
+            fnHelper.verifyPassword(admin.hash, req.body.password)
               .then(function(match) {
                 if(match) {
-                  dbHelper.getRecord(db.Employee, 'username', admin.username)
-                    .then(function(admin) {
-                      if(admin) {
-                        fnHelper.verifyPassword(admin.hash, req.body.password)
-                        .then(function(match) {
-                          if(match) {
-                            dbHelper.getRecord(db.Employee, 'isAdmin', admin.isAdmin)
-                              .then(function(isAdmin) {
-                                if(isAdmin) {
-                                  var token = jwt.sign({
-                                    organizationId: org.id,
-                                    orgName: org.orgName
-                                  }, secret.SECRET);
-                                  res.send({
-                                    token: token,
-                                    success: true,
-                                    message: 'Passwords match',
-                                    org: org,
-                                    organizationId: org.id
-                                  });
-                                } else {
-                                  res.status(403).json({
-                                    success: false,
-                                    message: 'Employee is not authorized'
-                                  });
-                                }
-                              });
-                          } else {
-                            res.status(401).json({
-                              success: false,
-                              message: 'Invalid administrator login info'
-                            });
-                          }
+                  dbHelper.getRecord(db.Employee, 'isAdmin', admin.isAdmin)
+                    .then(function(isAdmin) {
+                      if(isAdmin) {
+                        var token = jwt.sign({
+                          organizationId: org.id,
+                          orgName: org.orgName
+                        }, secret.SECRET);
+                        res.send({
+                          token: token,
+                          success: true,
+                          message: 'Passwords match',
+                          org: org,
+                          organizationId: org.id
                         });
                       } else {
-                        res.status(401).json({
+                        res.status(403).json({
                           success: false,
-                          message: 'Administrator does not exist'
-                        })
+                          message: 'Employee is not authorized'
+                        });
                       }
                     });
                 } else {
                   res.status(401).json({
                     success: false,
-                    message: 'Invalid organization login info'
+                    message: 'Invalid administrator login info'
                   });
                 }
               });
           } else {
             res.status(401).json({
               success: false,
-              message: 'Organization does not exist'
+              message: 'Invalid organization login info'
             });
           }
         });

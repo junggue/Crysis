@@ -21,7 +21,7 @@ app.set('port', process.env.PORT || 3000);
 // app.use('/api', testRouter);
 app.use('/api', router);
 app.use(function(req, res) {
-	res.send('404: Page not Found', 404);
+	res.status(404).send('404: Page not Found');
 });
 
 app.listen(app.get('port'), function() {
