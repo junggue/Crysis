@@ -40,12 +40,23 @@ exports.updateData = function(table, id, newColumnData){
 	return table.update(newColumnData, {where:{id:id}});
 };
 
+exports.updateRecordById = function(table, id, newRow){
+	return table.find({where:{id:id}})
+		.then(function(row){
+			row.updateAttributes({
+				column1: newValue,
+				column2: newValue,
+				column3: newValue
+			});
+		});
+};
+
 exports.updateDataByName = function(table, username, newColumnData){
 	return table.update(newColumnData, {where:{username: username}});
-}
+};
 
 exports.deleteData = function(table, id){
-	return (table.findById(id));
+	return (table.destroy({where:{id:id}}));
 };
 
 exports.isIdExist = function(table, id){
