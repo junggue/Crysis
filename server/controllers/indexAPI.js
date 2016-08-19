@@ -9,6 +9,8 @@ var createAdminController = require('./createAdmin.controller.js');
 var deviceTokenController = require('./deviceToken.controller.js');
 var alertController = require('./alert.controller.js');
 var statusUpdateController = require('./statusUpdate.controller.js');
+var webloginController = require('./webLogin.controller.js');
+
 
 module.exports.controllers = {
 	'user'				  : userController['user'],
@@ -22,5 +24,6 @@ module.exports.controllers = {
 module.exports.authControllers = {
 	'mobileLogin': mobileLoginController['mobileLogin'],
 	'adminLogin' : adminLoginController['adminLogin'],
-	'createAdmin': createAdminController['createAdmin']
+	'createAdmin': createAdminController['createAdmin'],
+	'webLogin' : webloginController['webLogin']
 }
