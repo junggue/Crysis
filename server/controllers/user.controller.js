@@ -36,7 +36,7 @@ module.exports = {
 			}
 			dbHelper.insertData(db.Employee, newUser)
 				.then(function(data){
-					res.status(200).send("successfully posted");
+					res.status(200).send(data);
 				})
 				.catch(function(err){
 					res.status(500).send(err.message);
@@ -49,6 +49,38 @@ module.exports = {
 				dbHelper.updateData(req, res, db.Employee, req.query.id, newColumnData)
 					.then(function(data){
 						res.status(200).send("successfully updated");
+					})
+					.catch(function(err){
+						res.status(500).send(err.message);
+					});
+			} else if(req.query.id && !req.query.column){
+				var updatedUser = {
+					username			: req.body.username,
+					email					: req.body.email,
+					name					: req.body.name,
+					isWarden			: req.body.isWarden,
+					wardenName		: req.body.wardenName,
+					status				: req.body.status,
+					isAdmin				: req.body.isAdmin,
+					password			: req.body.password,
+					OrganizationId: req.body.OrganizationId
+				}
+				// dbHelper.insertData(db.Employee, updatedUser)
+				db.Employee.find({where:{id:req.query.id}})
+					.then(function(row){
+						return row.updateAttributes({
+							username			: req.body.username,
+							email					: req.body.email,
+							name					: req.body.name,
+							isWarden			: req.body.isWarden,
+							wardenName		: req.body.wardenName,
+							status				: req.body.status,
+							isAdmin				: req.body.isAdmin,
+							password			: req.body.password
+						});
+					})
+					.then(function(data){
+						res.status(200).send(data);
 					})
 					.catch(function(err){
 						res.status(500).send(err.message);
