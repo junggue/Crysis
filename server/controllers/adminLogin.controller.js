@@ -18,44 +18,69 @@ module.exports = {
         username: req.body.username,
         password: req.body.password
       };
-      fnHelper.verifyPassword(org.orgHash, req.body.orgPassword)
-        .then(function(match) {
-          if(match) {
-            fnHelper.verifyPassword(admin.hash, req.body.password)
+      dbHelper.getRecord(db.Organization, 'orgName', req.body.orgName)
+        .then(function(org) {
+          if(org) {
+            console.log('inside org exists check');
+            fnHelper.verifyPassword(org.orgHash, req.body.orgPassword)
               .then(function(match) {
                 if(match) {
-                  dbHelper.getRecord(db.Employee, 'isAdmin', admin.isAdmin)
-                    .then(function(isAdmin) {
-                      if(isAdmin) {
-                        var token = jwt.sign({
-                          organizationId: org.id,
-                          orgName: org.orgName
-                        }, secret.SECRET);
-                        res.send({
-                          token: token,
-                          success: true,
-                          message: 'Passwords match',
-                          org: org,
-                          organizationId: org.id
+                  console.log('inside org password match');
+                  dbHelper.getRecord(db.Employee, 'username', req.body.username)
+                    .then(function(admin) {
+                      if(admin) {
+                        console.log('inside admin exists check');
+                        fnHelper.verifyPassword(admin.hash, req.body.password)
+                        .then(function(match) {
+                          if(match) {
+                            console.log('inside admin password login match');
+                            dbHelper.getRecord(db.Employee, 'isAdmin', admin.isAdmin)
+                            .then(function(isAdmin) {
+                              if(isAdmin) {
+                                console.log('inside admin status check');
+                                var token = jwt.sign({
+                                  organizationId: org.id,
+                                  orgName: org.orgName
+                                }, secret.SECRET);
+                                res.send({
+                                  token: token,
+                                  success: true,
+                                  message: 'Passwords match',
+                                  org: org,
+                                  organizationId: org.id
+                                });
+                              } else {
+                                res.status(403).json({
+                                  success: false,
+                                  message: 'Employee is not authorized'
+                                });
+                              }
+                            });
+                          } else {
+                            res.status(401).json({
+                              success: false,
+                              message: 'Invalid administrator login info'
+                            });
+                          }
                         });
                       } else {
                         res.status(403).json({
                           success: false,
-                          message: 'Employee is not authorized'
+                          message: 'Administrator does not exist'
                         });
                       }
                     });
-                } else {
-                  res.status(401).json({
-                    success: false,
-                    message: 'Invalid administrator login info'
-                  });
-                }
-              });
+                  } else {
+                    res.status(401).json({
+                      success: false,
+                      message: 'Invalid organization login info'
+                    });
+                  }
+                });
           } else {
-            res.status(401).json({
+            res.status(403).json({
               success: false,
-              message: 'Invalid organization login info'
+              message: 'Organization does not exist'
             });
           }
         });
