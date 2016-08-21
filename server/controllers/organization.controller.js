@@ -23,17 +23,7 @@ module.exports = {
 				});
 		},
 		post: function(req, res){
-			var newOrg = {
-				username: req.body.username,
-				password: req.body.password
-			}
-			dbHelper.insertData(db.Organization, newOrg)
-				.then(function(data){
-					res.status(200).send("successfully posted");
-				})
-				.catch(function(err){
-					res.status(500).send(err.message);
-				});
+			res.end('Received POST organization');
 		},
 		put: function(req, res){
 			if(req.query.id && req.query.column){
