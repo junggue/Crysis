@@ -4,145 +4,199 @@ module.exports = (function () {
 
 	db.Organization.bulkCreate([
 		{
-			orgName: 'Toiletz',
+			orgName: 'MKS41',
 			orgPassword: 'password123',
-			safezone: 'Courtyard',
+			safezone: 'Side Car',
 			emergencyStatus: false
 		},
 		{
-			orgName: 'Cool & Co',
-			orgPassword: 'thisisourpassword',
-			safezone: 'alley behind building C',
-			emergencyStatus: false
-		},
-		{
-			orgName: 'Sidecar Donuts',
-			orgPassword: 'doughnutsaregreat',
-			safezone: 'park across the street',
+			orgName: 'Crysis',
+			orgPassword: 'password123',
+			safezone: 'Spinfish Poke',
 			emergencyStatus: false
 		}
 	]);
 
 	db.Employee.bulkCreate([
 		{
-			username: 'woodmerik',
-			email: 'woodmerik@aol.com',
+			username: 'chadd',
+			email: 'test1@mks.com',
 			password: 'password123',
-			name: 'Merik Wood',
+			name: 'Chadd Bennett',
 			isWarden: true,
-			wardenName: 'woodmerik',
+			wardenName: 'Chadd',
 			status: 'safe',
 			isAdmin: true,
 			organizationId: 1,
-			deviceToken: 'jkjfaopushfkabrgbafglkjhalkjh'
+			deviceToken: ''
 		},
 		{
-			username: 'terramatt',
-			email: 'mattterra@aol.com',
+			username: 'ariel',
+			email: 'test2@mks.com',
 			password: 'password123',
-			name: 'Matt Terra',
+			name: 'Ariel Cook',
 			isWarden: false,
-			wardenName: 'woodmerik',
+			wardenName: 'Chadd',
 			status: 'safe',
 			isAdmin: false,
 			organizationId: 1,
-			deviceToken: 'FKJAHOPUYGHBlkjblkajlkfhgla3i5p83y4'
+			deviceToken: ''
 		},
 		{
-			username: 'yangjung',
-			email: 'yangjung@aol.com',
+			username: 'chris',
+			email: 'test3@mks.com',
 			password: 'password123',
-			name: 'Jung Yang',
-			isWarden: false,
-			wardenName: 'woodmerik',
-			status: 'safe',
-			isAdmin: false,
-			organizationId: 1,
-			deviceToken: 'gasdfuas8d7uotoiywer8798698y09iy'
-		},
-		{
-			username: 'velazsteph',
-			email: 'stephvelaz@yahoo.com',
-			password: '34password567',
-			name: 'Steph Velaz',
-			isWarden: false,
-			wardenName: 'woodmerik',
-			status: 'safe',
-			isAdmin: false,
-			organizationId: 1,
-			deviceToken: 'oiy986798yjlkjlkjoauysfasfgadf'
-		},
-		{
-			username: 'marcober',
-			email: 'marcober@yahoo.com',
-			password: 'anotherpassword',
-			name: 'Marco Ber',
-			isWarden: true,
-			wardenName: 'marcober',
-			status: 'safe',
-			isAdmin: true,
-			organzationId: 2,
-			deviceToken: 'uyaousyfguhkjwehg2535634563245'
-		},
-		{
-			username: 'janefong',
-			email: 'fongjane@yahoo.com',
-			password: 'password3456',
-			name: 'Jane Fong',
-			isWarden: false,
-			wardenName: 'marcober',
-			status: 'safe',
-			isAdmin: true,
-			organizationId: 2,
-			deviceToken: 'kshfopguykjawrhltkq2452u3857698eryuhgkjl'
-		},
-		{
-			username: 'kuhchris',
-			email: 'kuhchris@aol.com',
-			password: 'cookies123',
 			name: 'Chris Kuh',
 			isWarden: false,
-			wardenName: 'marcober',
+			wardenName: 'Chadd',
+			status: 'safe',
+			isAdmin: false,
+			organizationId: 1,
+			deviceToken: ''
+		},
+		{
+			username: 'dailen',
+			email: 'test4@mks.com',
+			password: 'password123',
+			name: 'Dailen Spencer',
+			isWarden: false,
+			wardenName: 'Chadd',
+			status: 'safe',
+			isAdmin: false,
+			organizationId: 1,
+			deviceToken: ''
+		},
+		{
+			username: 'jason',
+			email: 'test5@mks.com',
+			password: 'password123',
+			name: 'Jason Lee',
+			isWarden: false,
+			wardenName: 'Chadd',
+			status: 'safe',
+			isAdmin: false,
+			organizationId: 1,
+			deviceToken: ''
+		},
+		{
+			username: 'joseph',
+			email: 'test6@mks.com',
+			password: 'password123',
+			name: 'Joseph Capezzuto',
+			isWarden: false,
+			wardenName: 'Chadd',
+			status: 'safe',
+			isAdmin: false,
+			organizationId: 1,
+			deviceToken: ''
+		},
+		{
+			username: 'michael',
+			email: 'test7@mks.com',
+			password: 'password123',
+			name: 'Michael Chen',
+			isWarden: false,
+			wardenName: 'Chadd',
+			status: 'safe',
+			isAdmin: false,
+			organizationId: 1,
+			deviceToken: ''
+		},
+		{
+			username: 'mike',
+			email: 'test8@mks.com',
+			password: 'password123',
+			name: 'Mike Terranova',
+			isWarden: false,
+			wardenName: 'Chadd',
+			status: 'safe',
+			isAdmin: false,
+			organizationId: 1,
+			deviceToken: ''
+		},
+		{
+			username: 'nizar',
+			email: 'test9@mks.com',
+			password: 'password123',
+			name: 'Nizar Ayari',
+			isWarden: false,
+			wardenName: 'Chadd',
+			status: 'safe',
+			isAdmin: false,
+			organizationId: 1,
+			deviceToken: ''
+		},
+		{
+			username: 'phil',
+			email: 'test10@mks.com',
+			password: 'password123',
+			name: 'Phil Seidel',
+			isWarden: false,
+			wardenName: 'Chadd',
+			status: 'safe',
+			isAdmin: false,
+			organizationId: 1,
+			deviceToken: ''
+		},
+		{
+			username: 'ryan',
+			email: 'test11@mks.com',
+			password: 'password123',
+			name: 'Ryan Morris',
+			isWarden: false,
+			wardenName: 'Chadd',
+			status: 'safe',
+			isAdmin: false,
+			organizationId: 1,
+			deviceToken: ''
+		},
+		{
+			username: 'merik',
+			email: 'test12@mks.com',
+			password: 'password123',
+			name: 'Merik Woodmansee',
+			isWarden: true,
+			wardenName: 'merik',
+			status: 'safe',
+			isAdmin: true,
+			organizationId: 2,
+			deviceToken: ''
+		},
+		{
+			username: 'matt',
+			email: 'test13@mks.com',
+			password: 'password123',
+			name: 'Matt Terranova',
+			isWarden: false,
+			wardenName: 'merik',
 			status: 'safe',
 			isAdmin: false,
 			organizationId: 2,
-			deviceToken: 'ashfakjhfglk23o9485039785yiotuehbfigkljauytpwou'
+			deviceToken: ''
 		},
 		{
-			username: 'mlester',
-			email: 'mlester@yahoo.com',
-			password: 'password7777',
-			name: 'Sean Lester',
-			isWarden: true,
-			wardenName: 'mlester',
-			status: 'safe',
-			isAdmin: true,
-			organizationId: 3,
-			deviceToken: '9925423k5jtbafsgjkhausyfghlkjfg'
-		},
-		{
-			username: 'junden',
-			email: 'jundenny@yahoo.com',
-			password: 'dietcoke3456',
-			name: 'Den Jun',
+			username: 'junggue',
+			email: 'test14@mks.com',
+			password: 'password123',
+			name: 'Junggue Yang',
 			isWarden: false,
-			wardenName: 'mlester',
+			wardenName: 'merik',
 			status: 'safe',
 			isAdmin: false,
-			organizationId: 3,
-			deviceToken: 'kjahfgoahgasfghjlasdo87g97687tuykjhgio565'
+			organizationId: 2,
+			deviceToken: ''
 		},
 		{
-			username: 'chenjust',
-			email: 'justchen@yahoo.com',
-			password: 'password1290',
-			name: 'Just Chen',
+			username: 'stephanie',
+			email: 'test15@mks.com',
+			password: 'password123',
+			name: 'Stephanie Velazquez',
 			isWarden: false,
-			wardenName: 'mlester',
+			wardenName: 'merik',
 			status: 'safe',
-			isAdmin: true,
-			organzationId: 3,
-			deviceToken: 'akjsdhfsabfiudp8p867thg21k3h4g53k5jhtbe'
+			isAdmin: false,
+			organizationId: 2,
+			deviceToken: ''
 		}
 	])
 
