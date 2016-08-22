@@ -2,8 +2,6 @@ node_modules/
 
 webClient/compiled/
 
-server/env/config.js
-
 server/keys/cert.pem
 server/keys/key.pem
 
